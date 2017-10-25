@@ -113,14 +113,14 @@ class EmergencyreportController extends ControllerBase
         }
 
         $emergencyreport = new Emergencyreport();
-        $emergencyreport->Header = $this->request->getPost("header");
-        $emergencyreport->Detail = $this->request->getPost("detail");
-        $emergencyreport->Runnerid = $this->request->getPost("runnerId");
-        $emergencyreport->Staffid = $this->request->getPost("staffId");
-        $emergencyreport->Lag = $this->request->getPost("lag");
-        $emergencyreport->Lng = $this->request->getPost("lng");
-        $emergencyreport->Status = $this->request->getPost("status");
-        $emergencyreport->Level = $this->request->getPost("level");
+        $emergencyreport->header = $this->request->getPost("header");
+        $emergencyreport->detail = $this->request->getPost("detail");
+        $emergencyreport->runnerId = $this->request->getPost("runnerId");
+        $emergencyreport->staffId = $this->request->getPost("staffId");
+        $emergencyreport->lag = $this->request->getPost("lag");
+        $emergencyreport->lng = $this->request->getPost("lng");
+        $emergencyreport->status = $this->request->getPost("status");
+        $emergencyreport->level = $this->request->getPost("level");
         
 
         if (!$emergencyreport->save()) {
@@ -174,14 +174,14 @@ class EmergencyreportController extends ControllerBase
             return;
         }
 
-        $emergencyreport->Header = $this->request->getPost("header");
-        $emergencyreport->Detail = $this->request->getPost("detail");
-        $emergencyreport->Runnerid = $this->request->getPost("runnerId");
-        $emergencyreport->Staffid = $this->request->getPost("staffId");
-        $emergencyreport->Lag = $this->request->getPost("lag");
-        $emergencyreport->Lng = $this->request->getPost("lng");
-        $emergencyreport->Status = $this->request->getPost("status");
-        $emergencyreport->Level = $this->request->getPost("level");
+        $emergencyreport->header = $this->request->getPost("header");
+        $emergencyreport->detail = $this->request->getPost("detail");
+        $emergencyreport->runnerId = $this->request->getPost("runnerId");
+        $emergencyreport->staffId = $this->request->getPost("staffId");
+        $emergencyreport->lag = $this->request->getPost("lag");
+        $emergencyreport->lng = $this->request->getPost("lng");
+        $emergencyreport->status = $this->request->getPost("status");
+        $emergencyreport->level = $this->request->getPost("level");
         
 
         if (!$emergencyreport->save()) {
