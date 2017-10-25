@@ -113,14 +113,14 @@ class ProblemreportController extends ControllerBase
         }
 
         $problemreport = new Problemreport();
-        $problemreport->Header = $this->request->getPost("header");
-        $problemreport->Detail = $this->request->getPost("detail");
-        $problemreport->Senderid = $this->request->getPost("senderId");
-        $problemreport->Staffid = $this->request->getPost("staffId");
-        $problemreport->Lag = $this->request->getPost("lag");
-        $problemreport->Lng = $this->request->getPost("lng");
-        $problemreport->Status = $this->request->getPost("status");
-        $problemreport->Level = $this->request->getPost("level");
+        $problemreport->header = $this->request->getPost("header");
+        $problemreport->detail = $this->request->getPost("detail");
+        $problemreport->senderId = $this->request->getPost("senderId");
+        $problemreport->staffId = $this->request->getPost("staffId");
+        $problemreport->lag = $this->request->getPost("lag");
+        $problemreport->lng = $this->request->getPost("lng");
+        $problemreport->status = $this->request->getPost("status");
+        $problemreport->level = $this->request->getPost("level");
         
 
         if (!$problemreport->save()) {
@@ -174,14 +174,14 @@ class ProblemreportController extends ControllerBase
             return;
         }
 
-        $problemreport->Header = $this->request->getPost("header");
-        $problemreport->Detail = $this->request->getPost("detail");
-        $problemreport->Senderid = $this->request->getPost("senderId");
-        $problemreport->Staffid = $this->request->getPost("staffId");
-        $problemreport->Lag = $this->request->getPost("lag");
-        $problemreport->Lng = $this->request->getPost("lng");
-        $problemreport->Status = $this->request->getPost("status");
-        $problemreport->Level = $this->request->getPost("level");
+        $problemreport->header = $this->request->getPost("header");
+        $problemreport->detail = $this->request->getPost("detail");
+        $problemreport->senderId = $this->request->getPost("senderId");
+        $problemreport->staffId = $this->request->getPost("staffId");
+        $problemreport->lag = $this->request->getPost("lag");
+        $problemreport->lng = $this->request->getPost("lng");
+        $problemreport->status = $this->request->getPost("status");
+        $problemreport->level = $this->request->getPost("level");
         
 
         if (!$problemreport->save()) {

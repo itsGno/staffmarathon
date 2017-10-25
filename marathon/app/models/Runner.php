@@ -28,15 +28,15 @@ class Runner extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var integer
-     * @Column(type="integer", length=13, nullable=false)
+     * @var string
+     * @Column(type="string", nullable=false)
      */
     public $sSID;
 
     /**
      *
-     * @var integer
-     * @Column(type="integer", length=10, nullable=false)
+     * @var string
+     * @Column(type="string", nullable=false)
      */
     public $tel;
 

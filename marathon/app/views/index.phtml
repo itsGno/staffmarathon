@@ -18,6 +18,39 @@
         <?php $this->assets->outputCss(); ?>
     </head>
     <body>
+    <div class="row">
+    <div class="col-sm">
+    <?php echo $this->tag->linkTo(["", "Home"]); ?>
+
+    </div>
+    <div class="col-sm">
+    <?php echo $this->tag->linkTo(["News/search", "news"]); ?>
+    
+    </div>
+    <div class="col-sm">
+    
+    <?php echo $this->tag->linkTo(["emergencyreport/search", "Emergency"]); ?>
+
+    </div>
+    <div class="col-sm">
+    
+    <?php echo $this->tag->linkTo(["problemreport/search", "Problem"]); ?>
+    
+    </div>
+    <div class="col-sm">
+    
+    <?php echo $this->tag->linkTo(["runner/search", "Runner"]); ?>
+    
+    </div>
+    <div class="col-sm">
+    
+    <?php echo $this->tag->linkTo(["staff/search", "Staff"]); ?>
+    
+    </div>
+    <div class="col-sm">
+        Logout
+    </div>
+</div>
         <div class="container">
             <?php echo $this->getContent(); ?>
         </div>
