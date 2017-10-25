@@ -68,10 +68,6 @@
        <th>Id</th>
        <th>Fname</th>
        <th>Lname</th>
-       <th>SSID</th>
-       <th>Tel</th>
-       <th>Username</th>
-       <th>Password</th>
        <th>View </th>
        </tr>
      </thead>
@@ -82,10 +78,6 @@
                 <td><?php echo $runner->id ?></td>
             <td><?php echo $runner->fname ?></td>
             <td><?php echo $runner->lname ?></td>
-            <td><?php echo $runner->sSID ?></td>
-            <td><?php echo $runner->tel ?></td>
-            <td><?php echo $runner->username ?></td>
-            <td><?php echo $runner->password ?></td>
 
                 <td><?php echo $this->tag->linkTo(["runner/edit/" . $runner->id, "View"]); ?></td>
             </tr>
