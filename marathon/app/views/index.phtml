@@ -44,22 +44,22 @@
 <div class="navbar-nav-scroll">
   <ul class="navbar-nav bd-navbar-nav flex-row">
     <li class="nav-item">
-      <a class="nav-link active" href="../marathon" >Home</a>
+      <a class="nav-link active" href="/Marathon/marathon" >Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link " href="../marathon/News/search" >News</a>
+      <a class="nav-link " href="/Marathon/marathon/News/search" >News</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link " href="#">Emergency</a>
+      <a class="nav-link  " href="/Marathon/marathon/emergencyreport/search">Emergency</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="" >Problem</a>
+      <a class="nav-link " href="/Marathon/marathon/problemreport/search" >Problem</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" href="runner.html" >Runner</a>
+      <a class="nav-link " href="/Marathon/marathon/runner/search" >Runner</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="staff.html" >Staff</a>
+      <a class="nav-link " href="/Marathon/marathon/staff/search" >Staff</a>
     </li>
   </ul>
 </div>
@@ -70,39 +70,7 @@
 
 </header>
   
-  <div class="row">
-    <div class="col-sm">
-    <?php echo $this->tag->linkTo(["", "Home"]); ?>
 
-    </div>
-    <div class="col-sm">
-    <?php echo $this->tag->linkTo(["News/search", "news"]); ?>
-    
-    </div>
-    <div class="col-sm">
-    
-    <?php echo $this->tag->linkTo(["emergencyreport/search", "Emergency"]); ?>
-
-    </div>
-    <div class="col-sm">
-    
-    <?php echo $this->tag->linkTo(["problemreport/search", "Problem"]); ?>
-    
-    </div>
-    <div class="col-sm">
-    
-    <?php echo $this->tag->linkTo(["runner/search", "Runner"]); ?>
-    
-    </div>
-    <div class="col-sm">
-    
-    <?php echo $this->tag->linkTo(["staff/search", "Staff"]); ?>
-    
-    </div>
-    <div class="col-sm">
-        Logout
-    </div>
-</div>
         <div class="container">
             <?php echo $this->getContent(); ?>
         </div>
