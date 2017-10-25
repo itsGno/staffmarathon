@@ -1,3 +1,30 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Vue.js -->
+  <script src="https://unpkg.com/vue"></script>
+  <title></title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
 <?php
 /**
  * @var \Phalcon\Mvc\View\Engine\Php $this
@@ -6,55 +33,69 @@
 
 <?php use Phalcon\Tag; ?>
 
-<div class="row">
-    <nav>
-        <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["staff/index", "Go Back"]); ?></li>
-            <li class="next"><?php echo $this->tag->linkTo(["staff/new", "Create "]); ?></li>
-        </ul>
-    </nav>
-</div>
+
+
+
+<style>
+.container {
+    margin-top: 10px;
+    text-align: center;
+}
+.search {
+    margin-top: 30px;
+    margin-left: 18px;
+}
+</style>
 
 <div class="page-header">
-    <h1>Search result</h1>
+<div class="search">
+<form class=" form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  <input class="form-control mr-sm-2" type="search" placeholder="Type" aria-label="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+</div>
 </div>
 
 <?php echo $this->getContent(); ?>
 
-<div class="row">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-            <th>Fname</th>
-            <th>Lname</th>
-            <th>Category</th>
-            <th>Username</th>
-            <th>Password</th>
+<!-- ข้อมูล -->
+<div class="container"  id="example-1">
 
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($page->items as $staff): ?>
-            <tr>
-                <td><?php echo $staff->id ?></td>
-            <td><?php echo $staff->fname ?></td>
-            <td><?php echo $staff->lname ?></td>
-            <td><?php echo $staff->category ?></td>
-            <td><?php echo $staff->username ?></td>
-            <td><?php echo $staff->password ?></td>
 
-                <td><?php echo $this->tag->linkTo(["staff/edit/" . $staff->id, "Edit"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["staff/delete/" . $staff->id, "Delete"]); ?></td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+  <table class="w3-table-all">
+     <thead>
+       <tr style="background-color: black; color:white;">
+       <th>Id</th>
+       <th>Fname</th>
+       <th>Lname</th>
+       <th>Category</th>
+       <th>Username</th>
+       <th>Password</th>
+       <th>View </th>
+       </tr>
+     </thead>
+
+     <tbody>
+     <?php foreach ($page->items as $staff): ?>
+         <tr class="w3-hover-red">
+             <td><?php echo $staff->id ?></td>
+         <td><?php echo $staff->fname ?></td>
+         <td><?php echo $staff->lname ?></td>
+         <td><?php echo $staff->category ?></td>
+         <td><?php echo $staff->username ?></td>
+         <td><?php echo $staff->password ?></td>
+
+             <td><?php echo $this->tag->linkTo(["staff/edit/" . $staff->id, "View"]); ?></td>
+         </tr>
+     <?php endforeach; ?>
+     </tbody>
+
+
+   </table>
 </div>
 
-<div class="row">
+<!--<div class="row">
     <div class="col-sm-1">
         <p class="pagination" style="line-height: 1.42857;padding: 6px 12px;">
             <?php echo $page->current, "/", $page->total_pages ?>
@@ -63,11 +104,13 @@
     <div class="col-sm-11">
         <nav>
             <ul class="pagination">
-                <li><?php echo $this->tag->linkTo("staff/search", "First") ?></li>
-                <li><?php echo $this->tag->linkTo("staff/search?page=" . $page->before, "Previous") ?></li>
-                <li><?php echo $this->tag->linkTo("staff/search?page=" . $page->next, "Next") ?></li>
-                <li><?php echo $this->tag->linkTo("staff/search?page=" . $page->last, "Last") ?></li>
+                <li><?php echo $this->tag->linkTo("runner/search", "First") ?></li>
+                <li><?php echo $this->tag->linkTo("runner/search?page=" . $page->before, "Previous") ?></li>
+                <li><?php echo $this->tag->linkTo("runner/search?page=" . $page->next, "Next") ?></li>
+                <li><?php echo $this->tag->linkTo("runner/search?page=" . $page->last, "Last") ?></li>
             </ul>
         </nav>
     </div>
-</div>
+</div>-->
+</html>
+
