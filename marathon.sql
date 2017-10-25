@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2017 at 12:31 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Generation Time: Oct 25, 2017 at 01:46 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -49,7 +47,7 @@ CREATE TABLE `emergencyreport` (
   `staffId` int(11) NOT NULL,
   `lag` double NOT NULL,
   `lng` double NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
   `level` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -58,7 +56,7 @@ CREATE TABLE `emergencyreport` (
 --
 
 INSERT INTO `emergencyreport` (`id`, `header`, `detail`, `runnerId`, `staffId`, `lag`, `lng`, `status`, `level`) VALUES
-(1, 'testemergency', 't', 1, 1, 1.02, 2.02, 1, 3),
+(1, 'testemergency', 't', 1, 1, 1.02, 2.02, 0, 3),
 (3, 'wqeqwe', 'qweqweqwe', 2453, 4523, 452, 452, 1, 0),
 (4, 'wqeqwe', 'qweqweqwe', 2453, 4523, 452, 452, 1, 0),
 (5, 'qweqwe', 'qweqwe', 111, 111, 111, 111, 1, 1);
@@ -90,9 +88,16 @@ CREATE TABLE `problemreport` (
   `staffId` int(11) NOT NULL,
   `lag` double NOT NULL,
   `lng` double NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
   `level` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `problemreport`
+--
+
+INSERT INTO `problemreport` (`id`, `header`, `detail`, `senderId`, `staffId`, `lag`, `lng`, `status`, `level`) VALUES
+(1, 'test', 'test', 111, 111, 1.2, 1.2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -121,6 +126,19 @@ INSERT INTO `runner` (`id`, `fname`, `lname`, `sSID`, `tel`, `username`, `passwo
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `category` text NOT NULL,
+  `lag` double NOT NULL,
+  `lng` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `staff`
 --
 
@@ -138,7 +156,8 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `fname`, `lname`, `category`, `username`, `password`) VALUES
-(1, 'testFname', 'testLName', 'water', 'teststaff', 'passstaff');
+(1, 'testFname', 'testLName', 'water', 'teststaff', 'passstaff'),
+(2, 'firstname', 'lastname', 'checkpoint', 'username1', 'password1');
 
 --
 -- Indexes for dumped tables
@@ -175,6 +194,12 @@ ALTER TABLE `runner`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
@@ -189,38 +214,36 @@ ALTER TABLE `staff`
 --
 ALTER TABLE `checkpointreport`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `emergencyreport`
 --
 ALTER TABLE `emergencyreport`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `problemreport`
 --
 ALTER TABLE `problemreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `runner`
 --
 ALTER TABLE `runner`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
