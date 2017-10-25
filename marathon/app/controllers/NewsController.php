@@ -4,7 +4,7 @@ use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
-class StaffController extends ControllerBase
+class NewsController extends ControllerBase
 {
     /**
      * Index action
@@ -15,13 +15,13 @@ class StaffController extends ControllerBase
     }
 
     /**
-     * Searches for staff
+     * Searches for news
      */
     public function searchAction()
     {
         $numberPage = 1;
         if ($this->request->isPost()) {
-            $query = Criteria::fromInput($this->di, 'Staff', $_POST);
+            $query = Criteria::fromInput($this->di, 'News', $_POST);
             $this->persistent->parameters = $query->getParams();
         } else {
             $numberPage = $this->request->getQuery("page", "int");
@@ -33,12 +33,12 @@ class StaffController extends ControllerBase
         }
         $parameters["order"] = "id";
 
-        $staff = Staff::find($parameters);
-        if (count($staff) == 0) {
-            $this->flash->notice("The search did not find any staff");
+        $news = News::find($parameters);
+        if (count($news) == 0) {
+            $this->flash->notice("The search did not find any news");
 
             $this->dispatcher->forward([
-                "controller" => "staff",
+                "controller" => "news",
                 "action" => "index"
             ]);
 
@@ -46,7 +46,7 @@ class StaffController extends ControllerBase
         }
 
         $paginator = new Paginator([
-            'data' => $staff,
+            'data' => $news,
             'limit'=> 10,
             'page' => $numberPage
         ]);
@@ -63,7 +63,7 @@ class StaffController extends ControllerBase
     }
 
     /**
-     * Edits a staff
+     * Edits a new
      *
      * @param string $id
      */
@@ -71,75 +71,71 @@ class StaffController extends ControllerBase
     {
         if (!$this->request->isPost()) {
 
-            $staff = Staff::findFirstByid($id);
-            if (!$staff) {
-                $this->flash->error("staff was not found");
+            $new = News::findFirstByid($id);
+            if (!$new) {
+                $this->flash->error("new was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "staff",
+                    'controller' => "news",
                     'action' => 'index'
                 ]);
 
                 return;
             }
 
-            $this->view->id = $staff->id;
+            $this->view->id = $new->id;
 
-            $this->tag->setDefault("id", $staff->id);
-            $this->tag->setDefault("Fname", $staff->Fname);
-            $this->tag->setDefault("Lname", $staff->Lname);
-            $this->tag->setDefault("category", $staff->category);
-            $this->tag->setDefault("username", $staff->username);
-            $this->tag->setDefault("password", $staff->password);
+            $this->tag->setDefault("id", $new->id);
+            $this->tag->setDefault("header", $new->header);
+            $this->tag->setDefault("detail", $new->detail);
+            $this->tag->setDefault("author", $new->author);
             
         }
     }
 
     /**
-     * Creates a new staff
+     * Creates a new new
      */
     public function createAction()
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "staff",
+                'controller' => "news",
                 'action' => 'index'
             ]);
 
             return;
         }
 
-        $staff = new Staff();
-        $staff->Fname = $this->request->getPost("Fname");
-        $staff->Lname = $this->request->getPost("Lname");
-        $staff->Category = $this->request->getPost("category");
-        $staff->Username = $this->request->getPost("username");
-        $staff->Password = $this->request->getPost("password");
+        $new = new News();
+        $new->Header = $this->request->getPost("header");
+        $new->Detail = $this->request->getPost("detail");
+        $new->Author = $this->request->getPost("author");
         
 
-        if (!$staff->save()) {
-            foreach ($staff->getMessages() as $message) {
+        if (!$new->save()) {
+            foreach ($new->getMessages() as $message) {
                 $this->flash->error($message);
             }
 
             $this->dispatcher->forward([
-                'controller' => "staff",
+                'controller' => "news",
                 'action' => 'new'
             ]);
 
             return;
         }
 
-        $this->flash->success("staff was created successfully");
+        $this->flash->success("new was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "staff",
+            'controller' => "news",
             'action' => 'index'
         ]);
     }
 
     /**
-     * Saves a staff edited
+     * Saves a new edited
      *
      */
     public function saveAction()
@@ -147,7 +143,7 @@ class StaffController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "staff",
+                'controller' => "news",
                 'action' => 'index'
             ]);
 
@@ -155,86 +151,84 @@ class StaffController extends ControllerBase
         }
 
         $id = $this->request->getPost("id");
-        $staff = Staff::findFirstByid($id);
+        $new = News::findFirstByid($id);
 
-        if (!$staff) {
-            $this->flash->error("staff does not exist " . $id);
+        if (!$new) {
+            $this->flash->error("new does not exist " . $id);
 
             $this->dispatcher->forward([
-                'controller' => "staff",
+                'controller' => "news",
                 'action' => 'index'
             ]);
 
             return;
         }
 
-        $staff->Fname = $this->request->getPost("Fname");
-        $staff->Lname = $this->request->getPost("Lname");
-        $staff->Category = $this->request->getPost("category");
-        $staff->Username = $this->request->getPost("username");
-        $staff->Password = $this->request->getPost("password");
+        $new->Header = $this->request->getPost("header");
+        $new->Detail = $this->request->getPost("detail");
+        $new->Author = $this->request->getPost("author");
         
 
-        if (!$staff->save()) {
+        if (!$new->save()) {
 
-            foreach ($staff->getMessages() as $message) {
+            foreach ($new->getMessages() as $message) {
                 $this->flash->error($message);
             }
 
             $this->dispatcher->forward([
-                'controller' => "staff",
+                'controller' => "news",
                 'action' => 'edit',
-                'params' => [$staff->id]
+                'params' => [$new->id]
             ]);
 
             return;
         }
 
-        $this->flash->success("staff was updated successfully");
+        $this->flash->success("new was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "staff",
+            'controller' => "news",
             'action' => 'index'
         ]);
     }
 
     /**
-     * Deletes a staff
+     * Deletes a new
      *
      * @param string $id
      */
     public function deleteAction($id)
     {
-        $staff = Staff::findFirstByid($id);
-        if (!$staff) {
-            $this->flash->error("staff was not found");
+        $new = News::findFirstByid($id);
+        if (!$new) {
+            $this->flash->error("new was not found");
 
             $this->dispatcher->forward([
-                'controller' => "staff",
+                'controller' => "news",
                 'action' => 'index'
             ]);
 
             return;
         }
 
-        if (!$staff->delete()) {
+        if (!$new->delete()) {
 
-            foreach ($staff->getMessages() as $message) {
+            foreach ($new->getMessages() as $message) {
                 $this->flash->error($message);
             }
 
             $this->dispatcher->forward([
-                'controller' => "staff",
+                'controller' => "news",
                 'action' => 'search'
             ]);
 
             return;
         }
 
-        $this->flash->success("staff was deleted successfully");
+        $this->flash->success("new was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "staff",
+            'controller' => "news",
             'action' => "index"
         ]);
     }
