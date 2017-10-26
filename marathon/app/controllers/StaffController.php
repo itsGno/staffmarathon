@@ -86,8 +86,8 @@ class StaffController extends ControllerBase
             $this->view->id = $staff->id;
 
             $this->tag->setDefault("id", $staff->id);
-            $this->tag->setDefault("Fname", $staff->Fname);
-            $this->tag->setDefault("Lname", $staff->Lname);
+            $this->tag->setDefault("fname", $staff->fname);
+            $this->tag->setDefault("lname", $staff->lname);
             $this->tag->setDefault("category", $staff->category);
             $this->tag->setDefault("username", $staff->username);
             $this->tag->setDefault("password", $staff->password);
