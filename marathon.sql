@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2017 at 01:46 PM
+-- Generation Time: Oct 26, 2017 at 10:28 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -59,7 +59,8 @@ INSERT INTO `emergencyreport` (`id`, `header`, `detail`, `runnerId`, `staffId`, 
 (1, 'testemergency', 't', 1, 1, 1.02, 2.02, 0, 3),
 (3, 'wqeqwe', 'qweqweqwe', 2453, 4523, 452, 452, 1, 0),
 (4, 'wqeqwe', 'qweqweqwe', 2453, 4523, 452, 452, 1, 0),
-(5, 'qweqwe', 'qweqwe', 111, 111, 111, 111, 1, 1);
+(5, 'qweqwe', 'qweqwe', 111, 111, 111, 111, 1, 1),
+(6, 'test', 'etse', 111, 11, 11, 11, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,8 @@ CREATE TABLE `problemreport` (
 --
 
 INSERT INTO `problemreport` (`id`, `header`, `detail`, `senderId`, `staffId`, `lag`, `lng`, `status`, `level`) VALUES
-(1, 'test', 'test', 111, 111, 1.2, 1.2, 1, 1);
+(1, 'test', 'test', 111, 111, 1.2, 1.2, 1, 1),
+(2, 'test', 'etset', 111, 11, 11, 11, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -109,6 +111,7 @@ CREATE TABLE `runner` (
   `id` int(11) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
   `sSID` varchar(255) NOT NULL,
   `tel` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -119,9 +122,9 @@ CREATE TABLE `runner` (
 -- Dumping data for table `runner`
 --
 
-INSERT INTO `runner` (`id`, `fname`, `lname`, `sSID`, `tel`, `username`, `password`) VALUES
-(1, 'testFname', 'testLname', 'testSSID', 'testTel', 'testUser', 'testPass'),
-(2, 'qweqwe', 'qweqw', 'qweqwe', 'qweqwe', 'qweqwe', 'qweqwe');
+INSERT INTO `runner` (`id`, `fname`, `lname`, `type`, `sSID`, `tel`, `username`, `password`) VALUES
+(1, 'testFname', 'testLname', 'marathon', 'testSSID', 'testTel', 'testUser', 'testPass'),
+(2, 'qweqwe', 'qweqw', 'half-marathon', 'qweqwe', 'qweqwe', 'qweqwe', 'qweqwe');
 
 -- --------------------------------------------------------
 
@@ -157,7 +160,8 @@ CREATE TABLE `staff` (
 
 INSERT INTO `staff` (`id`, `fname`, `lname`, `category`, `username`, `password`) VALUES
 (1, 'testFname', 'testLName', 'water', 'teststaff', 'passstaff'),
-(2, 'firstname', 'lastname', 'checkpoint', 'username1', 'password1');
+(2, 'firstname', 'lastname', 'checkpoint', 'username1', 'password1'),
+(3, 'test', 'test', 'water', 'asd', '123qwe');
 
 --
 -- Indexes for dumped tables
@@ -218,7 +222,7 @@ ALTER TABLE `checkpointreport`
 -- AUTO_INCREMENT for table `emergencyreport`
 --
 ALTER TABLE `emergencyreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `news`
 --
@@ -228,7 +232,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `problemreport`
 --
 ALTER TABLE `problemreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `runner`
 --
@@ -243,7 +247,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
