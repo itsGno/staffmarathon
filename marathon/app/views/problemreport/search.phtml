@@ -45,17 +45,19 @@
     margin-top: 30px;
     margin-left: 18px;
 }
+.add{
+  margin-left: 10px;
+}
 </style>
 
 
 <div class="page-header">
 <div class="search">
-<form class=" form-inline my-2 my-lg-0" action ="../staff/search" method="POST">
-  <input class="form-control mr-sm-2" type="search" placeholder="Id" aria-label="Search" name="id">
+<form class=" form-inline my-2 my-lg-0" action ="../problemreport/search" method="POST">
   <input class="form-control mr-sm-2" type="search" placeholder="First name" aria-label="Search"name="fname">
   <input class="form-control mr-sm-2" type="search" placeholder="Last name" aria-label="Search"name="lname">
-  <input class="form-control mr-sm-2" type="search" placeholder="Category" aria-label="Search"name="category">
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <button class="add btn btn-outline-success my-2 my-sm-0" ><a href="/Marathon/marathon/problemreport/new/" style="color:#28a745;">Add</a></button>
 </form>
 </div>
 </div>
@@ -69,10 +71,10 @@
      <thead>
        <tr style="background-color: black; color:white;">
          <th>Id</th>
+         <th>Title</th>
          <th>Staff Name</th>
-         <th>Status</th>
          <th>Level</th>
-         <th>Level</th>
+         <th>View</th>
        </tr>
      </thead>
 
@@ -80,13 +82,12 @@
      <?php if(isSet($page)){
      foreach ($page->items as $problemreport): ?>
          <tr class="w3-hover-red">
-
          <td><?php echo $problemreport->id ?></td>
-           <td><?php echo $problemreport->staffId ?></td>
+         <td><?php echo $problemreport->header ?></td>
          <td><?php echo $problemreport->status ?></td>
          <td><?php echo $problemreport->level ?></td>
 
-             <td><?php echo $this->tag->linkTo(["staff/edit/" . $problemreport->id, "View"]); ?></td>
+             <td><a href="/Marathon/marathon/problemreport/edit/<?php echo $problemreport->id ?>">View</td>
          </tr>
      <?php endforeach;
      } ?>
