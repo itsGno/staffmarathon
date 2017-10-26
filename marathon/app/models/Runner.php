@@ -26,6 +26,15 @@ class Runner extends \Phalcon\Mvc\Model
      */
     public $lname;
 
+
+     /**
+     *
+     * @var string
+     * @Column(type="string", nullable=false)
+     */
+    public $type;
+    
+    
     /**
      *
      * @var string
