@@ -1,3 +1,30 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Vue.js -->
+  <script src="https://unpkg.com/vue"></script>
+  <title></title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
 <?php
 /**
  * @var \Phalcon\Mvc\View\Engine\Php $this
@@ -6,58 +33,71 @@
 
 <?php use Phalcon\Tag; ?>
 
-<div class="row">
-    <nav>
-        <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["emergencyreport/index", "Go Back"]); ?></li>
-            <li class="next"><?php echo $this->tag->linkTo(["emergencyreport/new", "Create "]); ?></li>
-        </ul>
-    </nav>
-</div>
+
+
+
+<style>
+.container {
+    margin-top: 10px;
+    text-align: center;
+}
+.search {
+    margin-top: 30px;
+    margin-left: 18px;
+}
+.add{
+  margin-left: 10px;
+}
+</style>
+
 
 <div class="page-header">
-    <h1>Search result</h1>
+<div class="search">
+<form class=" form-inline my-2 my-lg-0" action ="../emergencyreport/search" method="POST">
+  <input class="form-control mr-sm-2" type="search" placeholder="First name" aria-label="Search"name="fname">
+  <input class="form-control mr-sm-2" type="search" placeholder="Last name" aria-label="Search"name="lname">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  <button class="add btn btn-outline-success my-2 my-sm-0" ><a href="/Marathon/marathon/emergencyreport/new/" style="color:#28a745;">Add</a></button>
+</form>
+
+
+
+</div>
 </div>
 
 <?php echo $this->getContent(); ?>
 
-<div class="row">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-            <th>Header</th>
-            <th>Detail</th>
-            <th>RunnerId</th>
-            <th>StaffId</th>
-            <th>Lag</th>
-            <th>Lng</th>
-            <th>Status</th>
-            <th>Level</th>
+<!-- ข้อมูล -->
+<div class="container"  id="example-1">
 
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($page->items as $emergencyreport): ?>
-            <tr>
-                <td><?php echo $emergencyreport->id ?></td>
-            <td><?php echo $emergencyreport->header ?></td>
-            <td><?php echo $emergencyreport->detail ?></td>
-            <td><?php echo $emergencyreport->runnerId ?></td>
-            <td><?php echo $emergencyreport->staffId ?></td>
-            <td><?php echo $emergencyreport->lag ?></td>
-            <td><?php echo $emergencyreport->lng ?></td>
-            <td><?php echo $emergencyreport->status ?></td>
-            <td><?php echo $emergencyreport->level ?></td>
+  <table class="w3-table-all">
+     <thead>
+       <tr style="background-color: black; color:white;">
+     <th>Id</th>
+     <th>Title</th>
+     <th>Runner Name</th>
+     <th>Staff Name</th>
+     <th>Level</th>
+      <th>View</th>
+       </tr>
+     </thead>
 
-                <td><?php echo $this->tag->linkTo(["emergencyreport/edit/" . $emergencyreport->id, "Edit"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["emergencyreport/delete/" . $emergencyreport->id, "Delete"]); ?></td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+     <tbody>
+     <?php foreach ($page->items as $emergencyreport): ?>
+         <tr class="w3-hover-red">
+         <td><?php echo $emergencyreport->id ?></td>
+         <td><?php echo $emergencyreport->header ?></td>
+         <td><?php echo $emergencyreport->runnerId ?></td>
+         <td><?php echo $emergencyreport->staffId ?></td>
+         <td><?php echo $emergencyreport->level ?></td>
+
+          <td><a href="/Marathon/marathon/emergencyreport/edit/<?php echo $emergencyreport->id ?>">View</td>
+         </tr>
+     <?php endforeach; ?>
+     </tbody>
+
+
+   </table>
 </div>
 
 <div class="row">
@@ -69,11 +109,12 @@
     <div class="col-sm-11">
         <nav>
             <ul class="pagination">
-                <li><?php echo $this->tag->linkTo("emergencyreport/search", "First") ?></li>
-                <li><?php echo $this->tag->linkTo("emergencyreport/search?page=" . $page->before, "Previous") ?></li>
-                <li><?php echo $this->tag->linkTo("emergencyreport/search?page=" . $page->next, "Next") ?></li>
-                <li><?php echo $this->tag->linkTo("emergencyreport/search?page=" . $page->last, "Last") ?></li>
+                <li><?php echo $this->tag->linkTo("problemreport/search", "First") ?></li>
+                <li><?php echo $this->tag->linkTo("problemreport/search?page=" . $page->before, "Previous") ?></li>
+                <li><?php echo $this->tag->linkTo("problemreport/search?page=" . $page->next, "Next") ?></li>
+                <li><?php echo $this->tag->linkTo("problemreport/search?page=" . $page->last, "Last") ?></li>
             </ul>
         </nav>
     </div>
 </div>
+</html>
