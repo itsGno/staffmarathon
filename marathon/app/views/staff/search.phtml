@@ -80,7 +80,8 @@
      </thead>
 
      <tbody>
-     <?php foreach ($page->items as $staff): ?>
+     <?php if(isSet($page)){
+     foreach ($page->items as $staff): ?>
          <tr class="w3-hover-red">
              <td><?php echo $staff->id ?></td>
          <td><?php echo $staff->fname ?></td>
@@ -91,7 +92,8 @@
 
              <td><?php echo $this->tag->linkTo(["staff/edit/" . $staff->id, "View"]); ?></td>
          </tr>
-     <?php endforeach; ?>
+     <?php endforeach;
+     } ?>
      </tbody>
 
 

@@ -35,12 +35,7 @@ class StaffController extends ControllerBase
 
         $staff = Staff::find($parameters);
         if (count($staff) == 0) {
-            $this->flash->notice("The search did not find any staff");
-
-            $this->dispatcher->forward([
-                "controller" => "staff",
-                "action" => "index"
-            ]);
+            $this->flash->notice("The search did not find any staff");    
 
             return;
         }
