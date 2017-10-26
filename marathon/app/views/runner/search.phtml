@@ -54,10 +54,9 @@
 <input class="form-control mr-sm-2" type="search" placeholder="Last name" aria-label="Search"name="lname">
 <select name="type">
 <option value="">- </option>
-
 <option value="Marathon">Marathon</option>
-  <option value="Half-marathon">Half-maratho</option>
-  <option value="Mini-marathon">Mini-marathon</option>
+  <option value="Half">Half-maratho</option>
+  <option value="Mini">Mini-marathon</option>
 </select>
  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>
@@ -82,7 +81,8 @@
      </thead>
 
      <tbody >
-        <?php foreach ($page->items as $runner): ?>
+     <?php if(isSet($page)){
+         foreach ($page->items as $runner): ?>
             <tr class="w3-hover-red">
                 <td><?php echo $runner->id ?></td>
             <td><?php echo $runner->fname ?></td>
@@ -91,7 +91,8 @@
 
                 <td><?php echo $this->tag->linkTo(["runner/edit/" . $runner->id, "View"]); ?></td>
             </tr>
-        <?php endforeach; ?>
+        <?php endforeach;
+        } ?>
         </tbody>
 
 
