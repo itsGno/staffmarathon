@@ -36,8 +36,10 @@ class StaffController extends ControllerBase
         $staff = Staff::find($parameters);
         if (count($staff) == 0) {
             $this->flash->notice("The search did not find any staff");    
-
-            return;
+            $parameters=null;
+       
+        $staff = Staff::find($parameters);
+         
         }
 
         $paginator = new Paginator([
