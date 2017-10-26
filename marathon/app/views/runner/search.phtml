@@ -23,6 +23,8 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+
 </body>
 <?php
 /**
@@ -44,20 +46,72 @@
     margin-top: 30px;
     margin-left: 18px;
 }
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.title {
+    color: Black;
+    font-size: 18px;
+}
+
+.media {
+    text-decoration: none;
+    font-size: 25px !important;
+    color: black;
+    width: 20px;
+    height: 32px;
+
+}
+.social{
+  text-align: center;
+  float: left;
+  width: 50%;
+
+}
+.name{
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #17a2b8;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.photo{
+  height: 300px;
+}
+
+button:hover, a:hover {
+    opacity: 0.7;
+}
+.select{
+  color: black !important;
+  border-color: black !important;
+}
 </style>
 
 <div class="page-header">
 <div class="search">
+
 <form class=" form-inline my-2 my-lg-0" action="../runner/search" method="POST">
 <input class="form-control mr-sm-2" type="search" placeholder="Bib id" aria-label="Search" name="id">
 <input class="form-control mr-sm-2" type="search" placeholder="First name" aria-label="Search"name="fname">
 <input class="form-control mr-sm-2" type="search" placeholder="Last name" aria-label="Search"name="lname">
-<select name="type">
+
+<select class="form-control mr-sm-2" name="type">
 <option value="">- </option>
 <option value="Marathon">Marathon</option>
   <option value="Half">Half-maratho</option>
   <option value="Mini">Mini-marathon</option>
 </select>
+
  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>
 </div>
@@ -84,13 +138,35 @@
      <?php if(isSet($page)){
          foreach ($page->items as $runner): ?>
             <tr class="w3-hover-red">
-                <td><?php echo $runner->id ?></td>
+            <td><?php echo $runner->id ?></td>
             <td><?php echo $runner->fname ?></td>
             <td><?php echo $runner->lname ?></td>
             <td><?php echo $runner->type ?></td>
 
-                <td><?php echo $this->tag->linkTo(["runner/edit/" . $runner->id, "View"]); ?></td>
+
+            <td data-toggle="modal" data-target="#myModal<?php echo $runner->id ?>" bid=<?php echo $runner->id?> name=<?php echo $runner->fname ?> type=<?php echo $runner->type ?> >View</a></td>
             </tr>
+
+            <div class="container">
+              <!-- Trigger the modal with a button -->
+              <!-- Modal -->
+              <div class="modal fade" id="myModal<?php echo $runner->id ?>" role="dialog">
+                <div class="modal-dialog">
+                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+              <div class="card">
+              <img src="https://images.alphacoders.com/846/thumb-1920-84631.jpg"  style="width:100%">
+
+                <h5 class="name"> <?php echo $runner->fname." ".$runner->lname ?></h5>
+                <p class="title"><?php echo $runner->type ?></p>
+                <p>Email : poramin.o21@hotmail.com</p>
+                <p>Phone :  <?php echo $runner->tel?></p>
+
+
+              </div>
+                </div>
+              </div>
+
+            </div>
         <?php endforeach;
         } ?>
         </tbody>
@@ -99,21 +175,30 @@
    </table>
 </div>
 
-<!--<div class="row">
-    <div class="col-sm-1">
-        <p class="pagination" style="line-height: 1.42857;padding: 6px 12px;">
+<div class="row" style="">
+    <div class="col-12">
+        <p class="pagination" style="margin-left: 530px;">
             <?php echo $page->current, "/", $page->total_pages ?>
         </p>
     </div>
-    <div class="col-sm-11">
+    <br>
+    <br>
+    <div class="col-12">
         <nav>
             <ul class="pagination">
-                <li><?php echo $this->tag->linkTo("runner/search", "First") ?></li>
-                <li><?php echo $this->tag->linkTo("runner/search?page=" . $page->before, "Previous") ?></li>
-                <li><?php echo $this->tag->linkTo("runner/search?page=" . $page->next, "Next") ?></li>
-                <li><?php echo $this->tag->linkTo("runner/search?page=" . $page->last, "Last") ?></li>
+                <div class="select btn  my-2 my-sm-0" ><li><?php echo $this->tag->linkTo("runner/search", "First") ?></li></div>
+
+                <div class="select btn  my-2 my-sm-0" ><li><?php echo $this->tag->linkTo("runner/search?page=" . $page->before, "Previous") ?></li></div>
+
+                <div class="select btn my-2 my-sm-0" ><li><?php echo $this->tag->linkTo("runner/search?page=" . $page->next, "Next") ?></li></div>
+
+                <div class="select btn  my-2 my-sm-0" ><li><?php echo $this->tag->linkTo("runner/search?page=" . $page->last, "Last") ?></li></div>
             </ul>
         </nav>
     </div>
-</div>-->
+</div>
+
+
+
+
 </html>
