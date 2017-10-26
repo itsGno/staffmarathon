@@ -47,11 +47,14 @@
 }
 </style>
 
+
 <div class="page-header">
 <div class="search">
-<form class=" form-inline my-2 my-lg-0">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  <input class="form-control mr-sm-2" type="search" placeholder="Type" aria-label="Search">
+<form class=" form-inline my-2 my-lg-0" action ="../staff/search" method="POST">
+  <input class="form-control mr-sm-2" type="search" placeholder="Id" aria-label="Search" name="id">
+  <input class="form-control mr-sm-2" type="search" placeholder="First name" aria-label="Search"name="fname">
+  <input class="form-control mr-sm-2" type="search" placeholder="Last name" aria-label="Search"name="lname">
+  <input class="form-control mr-sm-2" type="search" placeholder="Category" aria-label="Search"name="category">
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>
 </div>
