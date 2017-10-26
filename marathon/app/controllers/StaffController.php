@@ -105,8 +105,8 @@ class StaffController extends ControllerBase
         }
 
         $staff = new Staff();
-        $staff->fname = $this->request->getPost("Fname");
-        $staff->lname = $this->request->getPost("Lname");
+        $staff->fname = $this->request->getPost("fname");
+        $staff->lname = $this->request->getPost("lname");
         $staff->category = $this->request->getPost("category");
         $staff->username = $this->request->getPost("username");
         $staff->password = $this->request->getPost("password");
