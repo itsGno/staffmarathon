@@ -37,6 +37,8 @@
     </div>
 </div>
 
+<div id="map"></div>
+
 <div class="form-group">
     <label for="fieldDetail" class="col-sm-2 control-label">Detail</label>
     <div class="col-sm-10">
@@ -59,16 +61,14 @@
 </div>
 
 <div class="form-group">
-    <label for="fieldLag" class="col-sm-2 control-label">Lag</label>
     <div class="col-sm-10">
-        <?php echo $this->tag->textField(["lag", "size" => 30, "class" => "form-control", "id" => "fieldLag"]) ?>
+        <?php echo $this->tag->hiddenField(["lag", "size" => 30, "class" => "form-control", "id" => "fieldLag"]) ?>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="fieldLng" class="col-sm-2 control-label">Lng</label>
     <div class="col-sm-10">
-        <?php echo $this->tag->textField(["lng", "size" => 30, "class" => "form-control", "id" => "fieldLng"]) ?>
+        <?php echo $this->tag->hiddenField(["lng", "size" => 30, "class" => "form-control", "id" => "fieldLng"]) ?>
     </div>
 </div>
 
@@ -87,3 +87,53 @@
 </div>
 
 <?php echo $this->tag->endForm(); ?>
+
+<style>
+    #map{
+        height: 500px;
+        width: 500px;
+    }
+    </style>
+
+
+
+<script>
+    var map;
+    var checkMarker = 0;
+    var marker;
+
+    function initMap() {
+        var myLatLng = {lat: 18.805197, lng: 98.947822};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: myLatLng
+        });
+        
+        google.maps.event.addListener(map, 'click', function(event) {
+            if(checkMarker == 0){
+                marker = new google.maps.Marker({
+                    position: event.latLng,
+                    map: map
+                });
+                document.getElementById("fieldLag").value =  event.latLng.lat();
+                document.getElementById("fieldLng").value =  event.latLng.lng();
+                checkMarker = 1;
+            }else{
+                setMapOnAll(null);
+                marker = new google.maps.Marker({
+                    position: event.latLng,
+                    map: map
+                });
+                document.getElementById("fieldLag").value =  event.latLng.lat();
+                document.getElementById("fieldLng").value =  event.latLng.lng();
+            }
+        });
+    }
+
+    function setMapOnAll(map) {
+          marker.setMap(map);
+    }
+
+      
+</script>
