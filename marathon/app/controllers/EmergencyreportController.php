@@ -36,13 +36,10 @@ class EmergencyreportController extends ControllerBase
         $emergencyreport = Emergencyreport::find($parameters);
         if (count($emergencyreport) == 0) {
             $this->flash->notice("The search did not find any emergencyreport");
-
-            $this->dispatcher->forward([
-                "controller" => "emergencyreport",
-                "action" => "index"
-            ]);
-
-            return;
+            $parameters = null;
+        $emergencyreport = Emergencyreport::find($parameters);
+        
+    
         }
 
         $paginator = new Paginator([
@@ -77,7 +74,7 @@ class EmergencyreportController extends ControllerBase
 
                 $this->dispatcher->forward([
                     'controller' => "emergencyreport",
-                    'action' => 'index'
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -106,7 +103,7 @@ class EmergencyreportController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "emergencyreport",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -140,7 +137,7 @@ class EmergencyreportController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "emergencyreport",
-            'action' => 'index'
+            'action' => 'search'
         ]);
     }
 
@@ -154,7 +151,7 @@ class EmergencyreportController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "emergencyreport",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -168,7 +165,7 @@ class EmergencyreportController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "emergencyreport",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -203,7 +200,7 @@ class EmergencyreportController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "emergencyreport",
-            'action' => 'index'
+            'action' => 'search'
         ]);
     }
 
