@@ -136,7 +136,10 @@ function initMap() {
    var uluru = {lat:   <?php echo $this->tag->getValue("lag"); ?> , lng: <?php echo $this->tag->getValue("lng"); ?>};
    var map = new google.maps.Map(document.getElementById('map'), {
          zoom: 16,
-         center: uluru
+         center: uluru,
+        streetViewControl: false,
+        mapTypeControl: false,
+        fullscreenControl: false
    });
    var marker = new google.maps.Marker({
          position: uluru,
