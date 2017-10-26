@@ -3,21 +3,6 @@
  * @var \Phalcon\Mvc\View\Engine\Php $this
  */
 ?>
-
-<div class="row">
-    <nav>
-        <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["emergencyreport", "Go Back"]) ?></li>
-        </ul>
-    </nav>
-</div>
-
-<div class="page-header">
-    <h1>
-        Create emergencyreport
-    </h1>
-</div>
-
 <?php echo $this->getContent(); ?>
 
 <?php
@@ -29,60 +14,59 @@
         ]
     );
 ?>
+<div class="container" style=" padding-top: 12%;">
+      <div class="form-group">
+        <label for="fieldHeader" class="col-sm-2 control-label" style="    position: absolute;  margin-top: 2%;  margin-left: 41%; ">Header</label>
+        <div class="col-sm-10">
+            <?php echo $this->tag->textArea(["header", "cols" => 30, "rows" => 4, "class" => " boxheader", "id" => "fieldHeader"]) ?>
+        </div>
+      </div>
+      <div id="map" style="margin-left: 4%; box-shadow: 0px 0px 4px 0px;"></div>
+      <div class="form-group">
+        <label for="fieldDetail" class="col-sm-2 control-label" style="position: absolute; margin-top: -28%;  margin-left: 41%; ">Detail</label>
+        <div class="col-sm-10">
+            <?php echo $this->tag->textArea(["detail", "cols" => 30, "rows" => 4, "class" => "form-control bdetail", "id" => "fieldDetail"]) ?>
+        </div>
+      </div>
 
-<div class="form-group">
-    <label for="fieldHeader" class="col-sm-2 control-label">Header</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["header", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldHeader"]) ?>
-    </div>
-</div>
-<div id="map"></div>
-<div class="form-group">
-    <label for="fieldDetail" class="col-sm-2 control-label">Detail</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["detail", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldDetail"]) ?>
-    </div>
-</div>
+      <div class="form-group">
+        <label for="fieldRunnerid" class="col-sm-2 control-label" style="    position: absolute;  margin-top: -19%;  margin-left: 41%;">Runner ID</label>
+        <div class="col-sm-10">
+            <?php echo $this->tag->textField(["runnerId", "type" => "number", "class" => "form-control brun", "id" => "fieldRunnerid"]) ?>
+        </div>
+      </div>
 
-<div class="form-group">
-    <label for="fieldRunnerid" class="col-sm-2 control-label">RunnerId</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["runnerId", "type" => "number", "class" => "form-control", "id" => "fieldRunnerid"]) ?>
-    </div>
-</div>
+      <div class="form-group">
+        <label for="fieldStaffid" class="col-sm-2 control-label" style="    position: absolute;  margin-top: -16%;  margin-left: 41%;">Staff ID</label>
+        <div class="col-sm-10">
+            <?php echo $this->tag->textField(["staffId", "type" => "number", "class" => "form-control bstaf", "id" => "fieldStaffid"]) ?>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10">
+            <?php echo $this->tag->hiddenField(["lag", "size" => 30, "class" => "form-control", "id" => "fieldLag"]) ?>
+        </div>
+      </div>
 
-<div class="form-group">
-    <label for="fieldStaffid" class="col-sm-2 control-label">StaffId</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["staffId", "type" => "number", "class" => "form-control", "id" => "fieldStaffid"]) ?>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-10">
-        <?php echo $this->tag->hiddenField(["lag", "size" => 30, "class" => "form-control", "id" => "fieldLag"]) ?>
-    </div>
-</div>
+      <div class="form-group">
+        <div class="col-sm-10">
+            <?php echo $this->tag->hiddenField(["lng", "size" => 30, "class" => "form-control", "id" => "fieldLng"]) ?>
+        </div>
+      </div>
 
-<div class="form-group">
-    <div class="col-sm-10">
-        <?php echo $this->tag->hiddenField(["lng", "size" => 30, "class" => "form-control", "id" => "fieldLng"]) ?>
-    </div>
-</div>
+      <div class="form-group">
+        <label for="fieldLevel" class="col-sm-2 control-label" style="    position: absolute;  margin-top: -15%;  margin-left: 41%;">Level</label>
+        <div class="col-sm-10">
+            <?php echo $this->tag->textField(["level", "type" => "number", "class" => "form-control bla", "id" => "fieldLevel"]) ?>
+        </div>
+      </div>
 
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <?php echo $this->tag->submitButton(["Save", "class" => "btn btn-default w3-btn w3-white w3-border-red w3-round-large ", "style" => " margin-left: 192%; margin-top: -40%; width: 36%; position: absolute; "]) ?>
+        </div>
+      </div>
 
-
-<div class="form-group">
-    <label for="fieldLevel" class="col-sm-2 control-label">Level</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["level", "type" => "number", "class" => "form-control", "id" => "fieldLevel"]) ?>
-    </div>
-</div>
-
-
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <?php echo $this->tag->submitButton(["Save", "class" => "btn btn-default"]) ?>
-    </div>
 </div>
 <?php echo $this->tag->endForm(); ?>
 <style>
@@ -106,7 +90,7 @@
           zoom: 15,
           center: myLatLng
         });
-        
+
         google.maps.event.addListener(map, 'click', function(event) {
             if(checkMarker == 0){
                 marker = new google.maps.Marker({
@@ -132,5 +116,50 @@
           marker.setMap(map);
     }
 
-      
+
 </script>
+<style>
+  .boxheader{
+    box-shadow: 0px 0px 4px 0px;
+    margin-left: 163%;
+    margin-top: 7%;
+    position: absolute;
+    line-height: 0.5;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
+  }
+  .bdetail{
+    box-shadow: 0px 0px 4px 0px;
+    margin-left: 163%;
+    margin-top: -96%;
+    position: absolute;
+  }
+  .brun{
+    box-shadow: 0px 0px 4px 0px;
+    margin-left: 163%;
+    margin-top: -66%;
+    position: absolute;
+  }
+  .bstaf{
+    box-shadow: 0px 0px 4px 0px;
+    margin-left: 163%;
+    margin-top: -55%;
+    position: absolute;
+  }
+  .bla{
+   box-shadow: 0px 0px 4px 0px;
+    margin-left: 163%;
+    margin-top: -52%;
+    position: absolute;
+
+  }
+</style>
