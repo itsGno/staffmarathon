@@ -21,6 +21,7 @@ class RunnerController extends ControllerBase
     {
         $numberPage = 1;
         if ($this->request->isPost()) {
+            
             $query = Criteria::fromInput($this->di, 'Runner', $_POST);
             $this->persistent->parameters = $query->getParams();
         } else {
@@ -29,6 +30,7 @@ class RunnerController extends ControllerBase
 
         $parameters = $this->persistent->parameters;
         if (!is_array($parameters)) {
+            
             $parameters = [];
         }
         $parameters["order"] = "id";
@@ -36,13 +38,9 @@ class RunnerController extends ControllerBase
         $runner = Runner::find($parameters);
         if (count($runner) == 0) {
             $this->flash->notice("The search did not find any runner");
-
-            $this->dispatcher->forward([
-                "controller" => "runner",
-                "action" => "index"
-            ]);
-
-            return;
+            $parameters =null;
+        $runner = Runner::find($parameters);
+        
         }
 
         $paginator = new Paginator([
