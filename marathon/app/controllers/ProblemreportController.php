@@ -36,10 +36,12 @@ class ProblemreportController extends ControllerBase
         $problemreport = Problemreport::find($parameters);
         if (count($problemreport) == 0) {
             $this->flash->notice("The search did not find any problemreport");
-
+            $parameters = null;
+            $problemreport = Problemreport::find($parameters);
+            
             $this->dispatcher->forward([
                 "controller" => "problemreport",
-                "action" => "index"
+                "action" => "search"
             ]);
 
             return;
@@ -77,7 +79,7 @@ class ProblemreportController extends ControllerBase
 
                 $this->dispatcher->forward([
                     'controller' => "problemreport",
-                    'action' => 'index'
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -106,7 +108,7 @@ class ProblemreportController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "problemreport",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -140,7 +142,7 @@ class ProblemreportController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "problemreport",
-            'action' => 'index'
+            'action' => 'search'
         ]);
     }
 
@@ -154,7 +156,7 @@ class ProblemreportController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "problemreport",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -168,7 +170,7 @@ class ProblemreportController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "problemreport",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -203,7 +205,7 @@ class ProblemreportController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "problemreport",
-            'action' => 'index'
+            'action' => 'search'
         ]);
     }
 
@@ -220,7 +222,7 @@ class ProblemreportController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "problemreport",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -244,7 +246,7 @@ class ProblemreportController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "problemreport",
-            'action' => "index"
+            'action' => "search"
         ]);
     }
 
