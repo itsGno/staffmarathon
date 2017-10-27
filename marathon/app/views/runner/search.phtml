@@ -175,27 +175,15 @@ button:hover, a:hover {
    </table>
 </div>
 
-<div class="row" style="">
-    <div class="col-12">
-        <p class="pagination" style="margin-left: 530px;">
-            <?php echo $page->current, "/", $page->total_pages ?>
-        </p>
-    </div>
-    <br>
-    <br>
-    <div class="col-12">
-        <nav>
-            <ul class="pagination">
-                <div class="select btn  my-2 my-sm-0" ><li><?php echo $this->tag->linkTo("runner/search", "First") ?></li></div>
-
-                <div class="select btn  my-2 my-sm-0" ><li><?php echo $this->tag->linkTo("runner/search?page=" . $page->before, "Previous") ?></li></div>
-
-                <div class="select btn my-2 my-sm-0" ><li><?php echo $this->tag->linkTo("runner/search?page=" . $page->next, "Next") ?></li></div>
-
-                <div class="select btn  my-2 my-sm-0" ><li><?php echo $this->tag->linkTo("runner/search?page=" . $page->last, "Last") ?></li></div>
-            </ul>
-        </nav>
-    </div>
+<!-- เเถบเลื่อนหน้า -->
+<div class="container">
+    <ul class="pager">
+      <li class="w3-btn " style="margin-left: 10px;">
+          <?php echo $page->current, "/", $page->total_pages ?>
+      </li>
+     <a href="/Marathon/marathon/runner/search?page=<?php echo $page->next ?>"><li class="w3-btn w3-white w3-border w3-border-black  w3-round-xxlarge " style="float: right; color:white !important; background-color: black !important;"><h5> ></h5> </li></a>
+     <a href="/Marathon/marathon/runner/search?page=<?php echo $page->before ?>"><li class="w3-btn w3-white w3-border  w3-border-black  w3-round-xxlarge w3-left" style="margin-left: -40px; color:white !important; background-color: black !important;" > <h5> <</h5>  </li></a>
+ </ul>
 </div>
 
 

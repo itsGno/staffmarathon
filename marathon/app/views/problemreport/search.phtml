@@ -57,8 +57,8 @@
 <input class="form-control mr-sm-2" type="search" placeholder="Title" aria-label="Search"name="header">
 
   <input class="form-control mr-sm-2" type="search" placeholder="Staff" aria-label="Search"name="staffId">
-  <select name="level" id="">
-    <option value="">select level</option>
+  <select class="form-control mr-sm-2" name="level" id="">
+    <option value="">Select level</option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -104,21 +104,14 @@
    </table>
 </div>
 
-<div class="row">
-    <div class="col-sm-1">
-        <p class="pagination" style="line-height: 1.42857;padding: 6px 12px;">
-            <?php echo $page->current, "/", $page->total_pages ?>
-        </p>
-    </div>
-    <div class="col-sm-11">
-        <nav>
-            <ul class="pagination">
-                <li><?php echo $this->tag->linkTo("problemreport/search", "First") ?></li>
-                <li><?php echo $this->tag->linkTo("problemreport/search?page=" . $page->before, "Previous") ?></li>
-                <li><?php echo $this->tag->linkTo("problemreport/search?page=" . $page->next, "Next") ?></li>
-                <li><?php echo $this->tag->linkTo("problemreport/search?page=" . $page->last, "Last") ?></li>
-            </ul>
-        </nav>
-    </div>
+<!-- เเถบเลื่อนหน้า -->
+<div class="container">
+    <ul class="pager">
+      <li class="w3-btn " style="margin-left: 10px;">
+          <?php echo $page->current, "/", $page->total_pages ?>
+      </li>
+     <a href="/Marathon/marathon/problemreport/search?page=<?php echo $page->next ?>"><li class="w3-btn w3-white w3-border w3-border-black  w3-round-xxlarge " style="float: right; color:white !important; background-color: black !important;"><h5> ></h5> </li></a>
+     <a href="/Marathon/marathon/problemreport/search?page=<?php echo $page->before ?>"><li class="w3-btn w3-white w3-border  w3-border-black  w3-round-xxlarge w3-left" style="margin-left: -40px; color:white !important; background-color: black !important;" > <h5> <</h5>  </li></a>
+ </ul>
 </div>
 </html>
