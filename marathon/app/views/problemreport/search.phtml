@@ -54,8 +54,15 @@
 <div class="page-header">
 <div class="search">
 <form class=" form-inline my-2 my-lg-0" action ="../problemreport/search" method="POST">
-  <input class="form-control mr-sm-2" type="search" placeholder="First name" aria-label="Search"name="fname">
-  <input class="form-control mr-sm-2" type="search" placeholder="Last name" aria-label="Search"name="lname">
+<input class="form-control mr-sm-2" type="search" placeholder="Title" aria-label="Search"name="header">
+
+  <input class="form-control mr-sm-2" type="search" placeholder="Staff" aria-label="Search"name="staffId">
+  <select name="level" id="">
+    <option value="">select level</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select>
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     <button class="add btn btn-outline-success my-2 my-sm-0" ><a href="/Marathon/marathon/problemreport/new/" style="color:#28a745;">Add</a></button>
 </form>
@@ -84,7 +91,7 @@
          <tr class="w3-hover-red">
          <td><?php echo $problemreport->id ?></td>
          <td><?php echo $problemreport->header ?></td>
-         <td><?php echo $problemreport->status ?></td>
+         <td><?php echo $problemreport->staffId ?></td>
          <td><?php echo $problemreport->level ?></td>
 
              <td><a href="/Marathon/marathon/problemreport/edit/<?php echo $problemreport->id ?>">View</td>
