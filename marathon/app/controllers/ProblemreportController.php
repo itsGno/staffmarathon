@@ -39,12 +39,7 @@ class ProblemreportController extends ControllerBase
             $parameters = null;
             $problemreport = Problemreport::find($parameters);
             
-            $this->dispatcher->forward([
-                "controller" => "problemreport",
-                "action" => "search"
-            ]);
 
-            return;
         }
 
         $paginator = new Paginator([
