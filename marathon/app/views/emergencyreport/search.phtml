@@ -54,9 +54,16 @@
 <div class="page-header">
 <div class="search">
 <form class=" form-inline my-2 my-lg-0" action ="../emergencyreport/search" method="POST">
-  <input class="form-control mr-sm-2" type="search" placeholder="First name" aria-label="Search"name="fname">
-  <input class="form-control mr-sm-2" type="search" placeholder="Last name" aria-label="Search"name="lname">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+<input class="form-control mr-sm-2" type="search" placeholder="Title" aria-label="Search"name="header">
+
+    <input class="form-control mr-sm-2" type="search" placeholder="Bib runber(runner)" aria-label="Search"name="runnerId">
+<select name="level" id="">
+    <option value="">select level</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   <button class="add btn btn-outline-success my-2 my-sm-0" ><a href="/Marathon/marathon/emergencyreport/new/" style="color:#28a745;">Add</a></button>
 </form>
 
