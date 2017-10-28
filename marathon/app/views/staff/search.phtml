@@ -54,7 +54,7 @@
   <input class="form-control mr-sm-2" type="search" placeholder="Id" aria-label="Search" name="id">
   <input class="form-control mr-sm-2" type="search" placeholder="First name" aria-label="Search"name="fname">
   <input class="form-control mr-sm-2" type="search" placeholder="Last name" aria-label="Search"name="lname">
-  <select name="category" id="">
+  <select class="form-control mr-sm-2" name="category" id="">
     <option value="">category</option>
     <option value="water">Water point</option>
     <option value="check">Check point</option>
@@ -76,7 +76,6 @@
        <th>Fname</th>
        <th>Lname</th>
        <th>Category</th>
-       <th>View </th>
        </tr>
      </thead>
 
@@ -90,8 +89,10 @@
          <td><?php echo $staff->category ?></td>
 
 
-             <td><?php echo $this->tag->linkTo(["staff/edit/" . $staff->id, "View"]); ?></td>
+
          </tr>
+
+
      <?php endforeach;
      } ?>
      </tbody>
@@ -111,4 +112,3 @@
  </ul>
 </div>
 </html>
-
