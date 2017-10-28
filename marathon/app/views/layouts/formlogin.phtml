@@ -3,6 +3,7 @@
 <?php if ($this->session->get('username')!=null&&$this->session->get('password')!=null){ ?>
   <p> session username : <?php echo $this->session->get('username');?> </p>
   <p> session password : <?php echo $this->session->get('password');?> </p>
+  <p> session password : <?php echo $this->session->get('id');?> </p>
 
 
   <p> cookie username : <?php echo $this->cookies->get('username');?> </p>
