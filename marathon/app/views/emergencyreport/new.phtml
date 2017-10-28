@@ -30,9 +30,8 @@
     
             <?php echo $this->tag->textField(["runnerId", "type" => "number", "class" => "form-control ", "id" => "fieldRunnerid"]) ?>
     
-        <label for="fieldStaffid" class="col-sm-5 control-label">Staff ID</label>
-    
-            <?php echo $this->tag->textField(["staffId", "type" => "number", "class" => "form-control ", "id" => "fieldStaffid"]) ?>
+                <?php $id = $this->session->get('id'); ?>
+            <?php echo $this->tag->hiddenField(["staffId", "type" => "number", "class" => "form-control ", "id" => "fieldStaffid","value" => "$id"]) ?>
     
             <?php echo $this->tag->hiddenField(["lag", "size" => 30, "class" => "form-control", "id" => "fieldLag"]) ?>
      
