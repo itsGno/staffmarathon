@@ -19,44 +19,59 @@
         ]
     );
 ?>
-  <div class="form-group">
-    <label class="col-md-2 control-label">username</label>
+<style>
+.textbox{
+  width: 500px;
+  float: right;
+}
+.Remember{
+  margin-top: 10px;
+  margin-left: 280px;
+}
+.check{
+  margin-left: -15px;
+  width: 40px;
+}
+\
+</style>
+<br>
+<br>
+<div class="container" style="">
+  <div class="form-group" >
+    <!--<label class="col-md-2 control-label" style="float: right;">Username</label>-->
     <div class="col-md-9">
 
-      <?php echo $this->tag->textField(["username", "cols" => 30, "class" => "form-control ", "placeholder" => "username",]) ?>
+      <?php echo $this->tag->textField(["username", "cols" => 30, "class" => "textbox form-control ", "placeholder" => "Username",]) ?>
 
     </div>
   </div>
-
+<br>
+<br>
   <div class="form-group">
-    <label class="col-md-2 control-label">Password</label>
+    <!--<label class="col-md-2 control-label">Password</label>-->
     <div class="col-md-9">
-      <?php echo $this->tag->passwordField(["password", "cols" => 30, "class" => "form-control ", "placeholder" => "password",]) ?>
+      <?php echo $this->tag->passwordField(["password", "cols" => 30, "class" => "textbox form-control ", "placeholder" => "Password",]) ?>
 
     </div>
   </div>
-
-  <div class="form-group">
+  <br>
+  <div class="form-group Remember">
     <label class="col-md-2 control-label">Remember Me</label>
-    <?php echo $this->tag->checkField(["remember",]) ?>
-
-    <div class="col-md-9">
-
-    </div>
+    <?php echo $this->tag->checkField(["remember", "class" => "check"]) ?>
   </div>
 
   <div class="form-group text-center">
 
-    <button type="submit" class="btn btn-primary btn-lg"> submit </button>
-
-    <button type="reset" class="btn btn-warning btn-sm"> Reset </button>
-    <a href="authen/logout" class="btn btn-danger"> Logout </a>
+    <button type="submit" class="btn btn-primary btn-lg"> Submit </button>
+    <button type="reset" class="btn btn-danger btn-lg"> Reset </button>
+    <!--<a href="authen/logout" class="btn btn-danger"> Logout </a>-->
   </div>
+
 
 
 <?php echo $this->tag->endForm(); ?>
 
-
+  </div>
 
 
 
