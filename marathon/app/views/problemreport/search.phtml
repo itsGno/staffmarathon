@@ -93,7 +93,7 @@
          <td><?php echo $problemreport->id ?></td>
          <td><?php echo $problemreport->header ?></td>
         <td>
-          <?php $sendername = Staff::findFirstByid($problemreport->staffId);?>
+          <?php $sendername = Staff::findFirstByid($problemreport->senderId);?>
           <?php echo Phalcon\Tag::linkTo(
               [
                   "staff/edit/$problemreport->senderId",
