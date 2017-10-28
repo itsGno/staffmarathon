@@ -35,7 +35,7 @@ class EmergencyreportController extends ControllerBase
 
         $emergencyreport = Emergencyreport::find($parameters);
         if (count($emergencyreport) == 0) {
-            $this->flash->notice("The search did not find any emergencyreport");
+         //   $this->flash->notice("The search did not find any emergencyreport");
             $parameters = null;
         $emergencyreport = Emergencyreport::find($parameters);
         
@@ -119,7 +119,16 @@ class EmergencyreportController extends ControllerBase
         $emergencyreport->status = $this->request->getPost("status");
         $emergencyreport->level = $this->request->getPost("level");
         
+        $runner = Runner::findFirstByid($emergencyreport->runnerId);
+        if($runner==null){
+            $this->flash->error("runner id does not exist " . $emergencyreport->runnerId);
+            $this->dispatcher->forward([
+                'controller' => "emergencyreport",
+                'action' => 'new'
+            ]);
 
+            return;
+        }        
         if (!$emergencyreport->save()) {
             foreach ($emergencyreport->getMessages() as $message) {
                 $this->flash->error($message);
@@ -132,6 +141,7 @@ class EmergencyreportController extends ControllerBase
 
             return;
         }
+    
 
         $this->flash->success("emergencyreport was created successfully");
 
