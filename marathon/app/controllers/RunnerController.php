@@ -1,5 +1,5 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
@@ -21,7 +21,7 @@ class RunnerController extends ControllerBase
     {
         $numberPage = 1;
         if ($this->request->isPost()) {
-            
+
             $query = Criteria::fromInput($this->di, 'Runner', $_POST);
             $this->persistent->parameters = $query->getParams();
         } else {
@@ -30,7 +30,7 @@ class RunnerController extends ControllerBase
 
         $parameters = $this->persistent->parameters;
         if (!is_array($parameters)) {
-            
+
             $parameters = [];
         }
         $parameters["order"] = "id";
@@ -40,7 +40,7 @@ class RunnerController extends ControllerBase
             $this->flash->notice("The search did not find any runner");
             $parameters =null;
         $runner = Runner::find($parameters);
-        
+
         }
 
         $paginator = new Paginator([
@@ -84,13 +84,13 @@ class RunnerController extends ControllerBase
             $this->view->id = $runner->id;
 
             $this->tag->setDefault("id", $runner->id);
-            $this->tag->setDefault("Fname", $runner->Fname);
-            $this->tag->setDefault("Lname", $runner->Lname);
-            $this->tag->setDefault("SSID", $runner->SSID);
-            $this->tag->setDefault("Tel", $runner->Tel);
+            $this->tag->setDefault("fname", $runner->fname);
+            $this->tag->setDefault("lname", $runner->lname);
+            $this->tag->setDefault("sSID", $runner->sSID);
+            $this->tag->setDefault("tel", $runner->tel);
             $this->tag->setDefault("username", $runner->username);
-            $this->tag->setDefault("Password", $runner->Password);
-            
+            $this->tag->setDefault("password", $runner->password);
+
         }
     }
 
@@ -115,7 +115,7 @@ class RunnerController extends ControllerBase
         $runner->tel = $this->request->getPost("Tel");
         $runner->username = $this->request->getPost("username");
         $runner->password = $this->request->getPost("Password");
-        
+
 
         if (!$runner->save()) {
             foreach ($runner->getMessages() as $message) {
@@ -174,7 +174,7 @@ class RunnerController extends ControllerBase
         $runner->tel = $this->request->getPost("Tel");
         $runner->username = $this->request->getPost("username");
         $runner->password = $this->request->getPost("Password");
-        
+
 
         if (!$runner->save()) {
 
