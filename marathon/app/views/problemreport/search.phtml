@@ -93,20 +93,21 @@
          <td><?php echo $problemreport->id ?></td>
          <td><?php echo $problemreport->header ?></td>
         <td>
-          <?php echo $problemreport->senderId ?>
+          <?php $sendername = Staff::findFirstByid($problemreport->staffId);?>
           <?php echo Phalcon\Tag::linkTo(
               [
-                  "runner/edit/$problemreport->senderId",
-                  "$problemreport->senderId "
+                  "staff/edit/$problemreport->senderId",
+                  "$sendername->fname "
             ]
             ); ?>
         </td>
          <td>
-           <?php echo $problemreport->staffId ?>
-           <?php echo Phalcon\Tag::linkTo(
+           <?php 
+           $staffname = Staff::findFirstByid($problemreport->staffId);
+           echo Phalcon\Tag::linkTo(
               [
-                  "runner/edit/$problemreport->senderId",
-                  "$problemreport->senderId "
+                  "staff/edit/$problemreport->staffId",
+                  "$staffname->fname"
             ]
             ); ?>
          </td>
