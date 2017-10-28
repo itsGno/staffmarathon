@@ -35,7 +35,7 @@ class ProblemreportController extends ControllerBase
 
         $problemreport = Problemreport::find($parameters);
         if (count($problemreport) == 0) {
-            $this->flash->notice("The search did not find any problemreport");
+          //  $this->flash->notice("The search did not find any problemreport");
             $parameters = null;
             $problemreport = Problemreport::find($parameters);
             
@@ -119,7 +119,16 @@ class ProblemreportController extends ControllerBase
         $problemreport->status = $this->request->getPost("status");
         $problemreport->level = $this->request->getPost("level");
         
+        $staff = Staff::findFirstByid($problemreport->staffId);
+        if($staff==null){
+            $this->flash->error("runner id does not exist " . $problemreport->staffId);
+            $this->dispatcher->forward([
+                'controller' => "emergencyreport",
+                'action' => 'new'
+            ]);
 
+            return;
+        }  
         if (!$problemreport->save()) {
             foreach ($problemreport->getMessages() as $message) {
                 $this->flash->error($message);
