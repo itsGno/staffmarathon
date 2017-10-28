@@ -23,7 +23,7 @@ class AuthenController extends ControllerBase{
           else $this->deleteCookies(); // Fn ลบ คุ๊กกี้
 
         //  $this->flashSession->success("ยินดีต้อนรับคุณ $username"); // เข้าระบบสำเร็จ
-          // $this->response->redirect("index"); // เปลี่ยนเส้นทาง
+           $this->response->redirect("index"); // เปลี่ยนเส้นทาง
 
         }else{
           $this->flashSession->error("รหัสผ่านไม่ถูกต้อง"); // รหัสผ่านไม่ถูก
