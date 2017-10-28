@@ -29,9 +29,9 @@
   
          <?php echo $this->tag->textArea(["detail", "cols" => 30, "rows" => 4, "class" => "form-control ", "id" => "fieldDetail"]) ?>
 
-     <label for="fieldRunnerid" class="col-sm-5 control-label" >Sender ID</label>
- 
-         <?php echo $this->tag->textField(["senderId", "type" => "number", "class" => "form-control ", "id" => "fieldSenderid"]) ?>
+     <?php $id = $this->session->get('id');?>
+   
+         <?php echo $this->tag->hiddenField(["senderId", "type" => "number", "class" => "form-control ", "id" => "fieldSenderid","value" => "$id"]) ?>
  
      <label for="fieldStaffid" class="col-sm-5 control-label">Staff ID</label>
  
