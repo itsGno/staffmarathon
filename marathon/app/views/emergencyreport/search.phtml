@@ -96,10 +96,10 @@
          <td><?php echo $emergencyreport->header ?></td>
          <td>
            <?php $runnername = Runner::findFirstByid($emergencyreport->runnerId);?>
-           
+
            <?php echo Phalcon\Tag::linkTo(
               [
-                  "runner/edit/$emergencyreport->runnerId",
+                  "runner/search",
                   "$runnername->fname"
             ]
             ); ?>
@@ -108,7 +108,7 @@
             <?php $staffname = Staff::findFirstByid($emergencyreport->staffId);?>
             <?php echo Phalcon\Tag::linkTo(
               [
-                  "runner/edit/$emergencyreport->staffId",
+                  "staff/search",
                   "$staffname->fname"
             ]
             ); ?>

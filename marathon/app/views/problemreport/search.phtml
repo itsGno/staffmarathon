@@ -96,17 +96,17 @@
           <?php $sendername = Staff::findFirstByid($problemreport->senderId);?>
           <?php echo Phalcon\Tag::linkTo(
               [
-                  "staff/edit/$problemreport->senderId",
+                  "staff/search",
                   "$sendername->fname "
             ]
             ); ?>
         </td>
          <td>
-           <?php 
+           <?php
            $staffname = Staff::findFirstByid($problemreport->staffId);
            echo Phalcon\Tag::linkTo(
               [
-                  "staff/edit/$problemreport->staffId",
+                  "staff/search",
                   "$staffname->fname"
             ]
             ); ?>
