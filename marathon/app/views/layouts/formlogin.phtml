@@ -38,27 +38,33 @@
 <br>
 <br>
 <div class="container" style="">
-  <div class="form-group" >
-    <!--<label class="col-md-2 control-label" style="float: right;">Username</label>-->
-    <div class="col-md-9">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button">Go!</button>
+        </span>
 
       <?php echo $this->tag->textField(["username", "cols" => 30, "class" => "textbox form-control ", "placeholder" => "Username",]) ?>
-
+</div>
     </div>
   </div>
 <br>
-<br>
-  <div class="form-group">
-    <!--<label class="col-md-2 control-label">Password</label>-->
-    <div class="col-md-9">
+<div class="row">
+  <div class="col-lg-6 offset-lg-3">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button">Go!</button>
+      </span>
       <?php echo $this->tag->passwordField(["password", "cols" => 30, "class" => "textbox form-control ", "placeholder" => "Password",]) ?>
-
+  </div>
     </div>
   </div>
   <br>
-  <div class="form-group Remember">
-    <label class="col-md-2 control-label">Remember Me</label>
-    <?php echo $this->tag->checkField(["remember", "class" => "check"]) ?>
+
+  <div class="form-group offset-lg-3">
+     <label for="fieldHeader" class="col-sm-4 control-label" >Remember Me <?php echo " ".$this->tag->checkField(["remember", "class" => "check"]) ?></label>
+
   </div>
 
   <div class="form-group text-center">
