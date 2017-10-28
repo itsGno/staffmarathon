@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2017 at 10:28 AM
+-- Generation Time: Oct 28, 2017 at 06:31 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -56,11 +56,7 @@ CREATE TABLE `emergencyreport` (
 --
 
 INSERT INTO `emergencyreport` (`id`, `header`, `detail`, `runnerId`, `staffId`, `lag`, `lng`, `status`, `level`) VALUES
-(1, 'testemergency', 't', 1, 1, 1.02, 2.02, 0, 3),
-(3, 'wqeqwe', 'qweqweqwe', 2453, 4523, 452, 452, 1, 0),
-(4, 'wqeqwe', 'qweqweqwe', 2453, 4523, 452, 452, 1, 0),
-(5, 'qweqwe', 'qweqwe', 111, 111, 111, 111, 1, 1),
-(6, 'test', 'etse', 111, 11, 11, 11, 0, 1);
+(1, 'test new emergency', 'test new emergency', 1, 3, 18.804320806128, 98.951153755188, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -98,8 +94,7 @@ CREATE TABLE `problemreport` (
 --
 
 INSERT INTO `problemreport` (`id`, `header`, `detail`, `senderId`, `staffId`, `lag`, `lng`, `status`, `level`) VALUES
-(1, 'test', 'test', 111, 111, 1.2, 1.2, 1, 1),
-(2, 'test', 'etset', 111, 11, 11, 11, 0, 1);
+(1, 'test new problem', 'test new problem', 3, 1, 18.804365239427, 98.952655792236, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -222,7 +217,7 @@ ALTER TABLE `checkpointreport`
 -- AUTO_INCREMENT for table `emergencyreport`
 --
 ALTER TABLE `emergencyreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `news`
 --
@@ -232,7 +227,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `problemreport`
 --
 ALTER TABLE `problemreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `runner`
 --
