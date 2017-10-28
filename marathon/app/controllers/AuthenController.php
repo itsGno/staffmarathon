@@ -13,17 +13,17 @@ class AuthenController extends ControllerBase{
         $remember = $this->request->getPost('remember');
 
         $member = Staff::findFirst(["conditions"=>"username=?1","bind"=>[1=>$username]]); // ค้นหา customer ด้วย username
-
+        $id = $member->id;
         // $this->security->hash($password); // สร้างรหัสผ่านแบบเข้ารหัส เปลี่ยนใหม่เรื่อยๆจากรหัสผ่านเดิม
 
         if($password == $member->password){ // ตรวจสอบรหัสถูกต้องตรงกันจากที่กรอกเข้ามาและฐานข้อมูล
-            $this->setSession($username,$password);
+            $this->setSession($username,$password,$id);
           if(!empty($remember))
-          $this->setCookies($username, $password); // Fn ตั้งค่าคุ๊กกี้
+          $this->setCookies($username, $password,$id); // Fn ตั้งค่าคุ๊กกี้
           else $this->deleteCookies(); // Fn ลบ คุ๊กกี้
 
         //  $this->flashSession->success("ยินดีต้อนรับคุณ $username"); // เข้าระบบสำเร็จ
-          $this->response->redirect("index"); // เปลี่ยนเส้นทาง
+          // $this->response->redirect("index"); // เปลี่ยนเส้นทาง
 
         }else{
           $this->flashSession->error("รหัสผ่านไม่ถูกต้อง"); // รหัสผ่านไม่ถูก
@@ -39,16 +39,15 @@ class AuthenController extends ControllerBase{
 
       $this->cookies->set("username",$username,$hour);
       $this->cookies->set("password",$password,$hour); // set cookie
+      $this->cookies->set("id",$password,$hour); // set cookie
 
-      $this->session->set("username",$username); // set session
-      $this->session->set("password",$password);
 
       return;
     }
-    function setSession($username, $password){
+    function setSession($username, $password,$id){
       $this->session->set("username",$username); // set session
       $this->session->set("password",$password);
-
+      $this->session->set("id",$id);
       return;
     }
 
