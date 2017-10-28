@@ -95,20 +95,21 @@
          <td><?php echo $emergencyreport->id ?></td>
          <td><?php echo $emergencyreport->header ?></td>
          <td>
-           <?php echo $emergencyreport->runnerId ?>
+           <?php $runnername = Runner::findFirstByid($emergencyreport->runnerId);?>
+           
            <?php echo Phalcon\Tag::linkTo(
               [
                   "runner/edit/$emergencyreport->runnerId",
-                  "$emergencyreport->runnerId "
+                  "$runnername->fname"
             ]
             ); ?>
          </td>
          <td>
-            <?php echo $emergencyreport->staffId ?>
+            <?php $staffname = Staff::findFirstByid($emergencyreport->staffId);?>
             <?php echo Phalcon\Tag::linkTo(
               [
                   "runner/edit/$emergencyreport->staffId",
-                  "$emergencyreport->staffId "
+                  "$staffname->fname"
             ]
             ); ?>
         </td>
