@@ -92,8 +92,24 @@
          <tr class="w3-hover-red">
          <td><?php echo $problemreport->id ?></td>
          <td><?php echo $problemreport->header ?></td>
-        <td><?php echo $problemreport->senderId ?></td>
-         <td><?php echo $problemreport->staffId ?></td>
+        <td>
+          <?php echo $problemreport->senderId ?>
+          <?php echo Phalcon\Tag::linkTo(
+              [
+                  "runner/edit/$problemreport->senderId",
+                  "$problemreport->senderId "
+            ]
+            ); ?>
+        </td>
+         <td>
+           <?php echo $problemreport->staffId ?>
+           <?php echo Phalcon\Tag::linkTo(
+              [
+                  "runner/edit/$problemreport->senderId",
+                  "$problemreport->senderId "
+            ]
+            ); ?>
+         </td>
          <td><?php echo $problemreport->level ?></td>
 
              <td><a href="/Marathon/marathon/problemreport/edit/<?php echo $problemreport->id ?>">View</td>
