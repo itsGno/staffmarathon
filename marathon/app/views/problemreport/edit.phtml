@@ -121,9 +121,14 @@ padding-left: 1%;
 <div id="map" class="boxmap"> </div>
 
 <div class="boxInfor">
+<?php 
+$staffname = Staff::findFirstByid($this->tag->getValue("staffId"));
+$sendername = Staff::findFirstByid($this->tag->getValue("staffId"));
+
+?>
     <span class="Fdetail"><?php echo $this->tag->getValue("header"); ?></span>
-    <span class="Frunner">Staff : </span>
-    <span class="Flevel">Sender :  </span>
+    <span class="Frunner">Staff : <?php echo $staffname->fname." ".$staffname->lname; ?> </span>
+    <span class="Flevel">Sender : <?php echo $sendername->fname." ".$sendername->lname; ?> </span>
     <span class="Fstaff">Level : <?php echo $this->tag->getValue("level"); ?></span>
     <div class="Detaill"> <?php echo $this->tag->getValue("detail"); ?></div>
     <button class="w3-button w3-white w3-border w3-border-blue w3-round-large edit">Cancel</button>
