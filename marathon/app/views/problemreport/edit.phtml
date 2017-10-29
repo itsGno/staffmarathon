@@ -42,7 +42,7 @@
             background: rgba(171, 92, 239, 0.63);
             width: 100%;
             width: 56%;
-            height: 214px;
+            height: auto;
             margin: auto;
             margin-top: 0.5%;
             box-shadow: #7d7d7d 0px 1px 5px 2px;
@@ -74,7 +74,7 @@
             position: absolute;
             margin-top: 4.5%;
             margin-left: 30%;
-  
+
         }
         .Flevel{
             color: #FFF;
@@ -82,7 +82,7 @@
             position: absolute;
             margin-top: 6%;
             margin-left: 30%;
-        
+
         }
         .Fstaff{
             color: #FFF;
@@ -90,7 +90,7 @@
             position: absolute;
             margin-top: 7.7%;
             margin-left: 30%;
-    
+
         }
         .edit{
 margin-left: 2%;
@@ -120,19 +120,30 @@ padding-left: 1%;
 
 <div id="map" class="boxmap"> </div>
 
-<div class="boxInfor">
-<?php 
-$staffname = Staff::findFirstByid($this->tag->getValue("staffId"));
-$sendername = Staff::findFirstByid($this->tag->getValue("staffId"));
 
-?>
-    <span class="Fdetail"><?php echo $this->tag->getValue("header"); ?></span>
-    <span class="Frunner">Staff : <?php echo $staffname->fname." ".$staffname->lname; ?> </span>
-    <span class="Flevel">Sender : <?php echo $sendername->fname." ".$sendername->lname; ?> </span>
-    <span class="Fstaff">Level : <?php echo $this->tag->getValue("level"); ?></span>
-    <div class="Detaill"> <?php echo $this->tag->getValue("detail"); ?></div>
-    <button class="w3-button w3-white w3-border w3-border-blue w3-round-large edit">Cancel</button>
+<div class="boxInfor form-group">
+  <?php
+  $staffname = Staff::findFirstByid($this->tag->getValue("staffId"));
+  $sendername = Staff::findFirstByid($this->tag->getValue("senderId"));
 
+  ?>
+  <div class="w3-third" style="color:black">
+    <h3 style="border-bottom-style: solid; border-width: 1px; border-bottom-color:yellow;">TITLE</h3>
+    <p><?php echo $this->tag->getValue("header"); ?></p>
+  </div>
+
+<div class="w3-third" style="color:black">
+  <h3 style="border-bottom-style: solid; border-width: 1px; border-bottom-color:blue;">DETAIL</h3>
+  <p> <?php echo $this->tag->getValue("detail"); ?></p>
+
+</div>
+
+<div class="w3-third" style="color:black">
+    <h3 style="border-bottom-style: solid; border-width: 1px; border-bottom-color:red;">MORE DETAIL</h3>
+  <span>Staff : <?php echo $staffname->fname." ".$staffname->lname; ?></span>
+  <span>Sender : <?php echo $sendername->fname." ".$sendername->lname; ?></span>
+    <p>Level : <?php echo $this->tag->getValue("level"); ?></p>
+</div>
 </div>
 
 
