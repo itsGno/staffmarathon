@@ -1,77 +1,114 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Vue.js -->
+  <script src="https://unpkg.com/vue"></script>
+  <title></title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
 <?php
 /**
  * @var \Phalcon\Mvc\View\Engine\Php $this
  */
 ?>
 
+<?php use Phalcon\Tag; ?>
+
+
+
+
+<style>
+.container {
+    margin-top: 10px;
+    text-align: center;
+}
+.search {
+    margin-top: 30px;
+    margin-left: 18px;
+}
+</style>
+
+
 <div class="page-header">
-    <h1>
-        Search staff
-    </h1>
-    <p>
-        <?php echo $this->tag->linkTo(["staff/new", "Create staff"]) ?>
-    </p>
+<div class="search">
+<form class=" form-inline my-2 my-lg-0" action ="../staff/search" method="POST">
+  <input class="form-control mr-sm-2" type="search" placeholder="Id" aria-label="Search" name="id">
+  <input class="form-control mr-sm-2" type="search" placeholder="First name" aria-label="Search"name="fname">
+  <input class="form-control mr-sm-2" type="search" placeholder="Last name" aria-label="Search"name="lname">
+  <select class="form-control mr-sm-2" name="category" id="">
+    <option value="">category</option>
+    <option value="water">Water point</option>
+    <option value="checkpoint">Check point</option>
+</select>  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+</div>
 </div>
 
-<?php echo $this->getContent() ?>
+<?php echo $this->getContent(); ?>
 
-<?php
-    echo $this->tag->form(
-        [
-            "staff/search",
-            "autocomplete" => "off",
-            "class" => "form-horizontal"
-        ]
-    );
-?>
+<!-- ข้อมูล -->
+<div class="container"  id="example-1">
 
-<div class="form-group">
-    <label for="fieldId" class="col-sm-2 control-label">Id</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["id", "type" => "number", "class" => "form-control", "id" => "fieldId"]) ?>
-    </div>
+
+  <table class="w3-table-all">
+     <thead>
+       <tr style="background-color: black; color:white;">
+       <th>Id</th>
+       <th>Fname</th>
+       <th>Lname</th>
+       <th>Category</th>
+       </tr>
+     </thead>
+
+     <tbody>
+     <?php if(isSet($page)){
+     foreach ($page->items as $staff): ?>
+         <tr class="w3-hover-red">
+             <td><?php echo $staff->id ?></td>
+         <td><?php echo $staff->fname ?></td>
+         <td><?php echo $staff->lname ?></td>
+         <td><?php echo $staff->category ?></td>
+
+
+
+         </tr>
+
+
+     <?php endforeach;
+     } ?>
+     </tbody>
+
+
+   </table>
 </div>
 
-<div class="form-group">
-    <label for="fieldFname" class="col-sm-2 control-label">Fname</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["fname", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldFname"]) ?>
-    </div>
+<!-- เเถบเลื่อนหน้า -->
+<div class="container">
+    <ul class="pager">
+      <li class="w3-btn " style="margin-left: 10px;">
+          <?php echo $page->current, "/", $page->total_pages ?>
+      </li>
+     <a href="/Marathon/marathon/staff/search?page=<?php echo $page->next ?>"><li class="w3-btn w3-white w3-border w3-border-black  w3-round-xxlarge " style="float: right; color:white !important; background-color: black !important;"><h5> ></h5> </li></a>
+     <a href="/Marathon/marathon/staff/search?page=<?php echo $page->before ?>"><li class="w3-btn w3-white w3-border  w3-border-black  w3-round-xxlarge w3-left" style="margin-left: -40px; color:white !important; background-color: black !important;" > <h5> <</h5>  </li></a>
+ </ul>
 </div>
-
-<div class="form-group">
-    <label for="fieldLname" class="col-sm-2 control-label">Lname</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["lname", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldLname"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldCategory" class="col-sm-2 control-label">Category</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["category", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldCategory"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldUsername" class="col-sm-2 control-label">Username</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["username", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldUsername"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldPassword" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["password", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldPassword"]) ?>
-    </div>
-</div>
-
-
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-default"]) ?>
-    </div>
-</div>
-
-<?php echo $this->tag->endForm(); ?>
+</html>

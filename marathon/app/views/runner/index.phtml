@@ -1,84 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Vue.js -->
+  <script src="https://unpkg.com/vue"></script>
+  <title></title>
+  <!-- Required meta tags -->
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+
+</body>
 <?php
 /**
  * @var \Phalcon\Mvc\View\Engine\Php $this
  */
 ?>
 
+<?php use Phalcon\Tag; ?>
+
+
+
+
+<style>
+.container {
+    margin-top: 10px;
+    text-align: center;
+}
+.search {
+    margin-top: 30px;
+    margin-left: 18px;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.title {
+    color: Black;
+    font-size: 18px;
+}
+
+.media {
+    text-decoration: none;
+    font-size: 25px !important;
+    color: black;
+    width: 20px;
+    height: 32px;
+
+}
+.social{
+  text-align: center;
+  float: left;
+  width: 50%;
+
+}
+.name{
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #17a2b8;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.photo{
+  height: 300px;
+}
+
+button:hover, a:hover {
+    opacity: 0.7;
+}
+.select{
+  color: black !important;
+  border-color: black !important;
+}
+</style>
+
 <div class="page-header">
-    <h1>
-        Search runner
-    </h1>
-    <p>
-        <?php echo $this->tag->linkTo(["runner/new", "Create runner"]) ?>
-    </p>
+<div class="search">
+
+<form class=" form-inline my-2 my-lg-0" action="../runner/search" method="POST">
+<input class="form-control mr-sm-2" type="search" placeholder="Bib id" aria-label="Search" name="id">
+<input class="form-control mr-sm-2" type="search" placeholder="First name" aria-label="Search"name="fname">
+<input class="form-control mr-sm-2" type="search" placeholder="Last name" aria-label="Search"name="lname">
+
+<select class="form-control mr-sm-2" name="type">
+<option value="">Type</option>
+<option value="Marathon">Marathon</option>
+  <option value="Half">Half-maratho</option>
+  <option value="Mini">Mini-marathon</option>
+</select>
+
+ <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+</div>
 </div>
 
-<?php echo $this->getContent() ?>
+<?php echo $this->getContent(); ?>
 
-<?php
-    echo $this->tag->form(
-        [
-            "runner/search",
-            "autocomplete" => "off",
-            "class" => "form-horizontal"
-        ]
-    );
-?>
+<!-- ข้อมูล -->
+<div class="container"  id="example-1">
 
-<div class="form-group">
-    <label for="fieldId" class="col-sm-2 control-label">Id</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["id", "type" => "number", "class" => "form-control", "id" => "fieldId"]) ?>
-    </div>
+
+  <table class="w3-table-all">
+     <thead>
+       <tr style="background-color: black; color:white;">
+       <th>Bib id</th>
+       <th>First Name</th>
+       <th>Last Name</th>
+       <th>Type</th>
+       <th>View </th>
+       </tr>
+     </thead>
+
+     <tbody >
+     <?php if(isSet($page)){
+         foreach ($page->items as $runner): ?>
+            <tr class="w3-hover-red">
+            <td><?php echo $runner->id ?></td>
+            <td><?php echo $runner->fname ?></td>
+            <td><?php echo $runner->lname ?></td>
+            <td><?php echo $runner->type ?></td>
+
+
+            <td data-toggle="modal" data-target="#myModal<?php echo $runner->id ?>"  >View</a></td>
+            </tr>
+
+            <div class="container">
+              <!-- Trigger the modal with a button -->
+              <!-- Modal -->
+              <div class="modal fade" id="myModal<?php echo $runner->id ?>" role="dialog">
+                <div class="modal-dialog">
+                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+              <div class="card">
+              <img src="http://www.mx7.com/i/007/0X4Wbi.PNG"  style="width:100%">
+
+                <h5 class="name"> <?php echo $runner->fname." ".$runner->lname ?></h5>
+                <p class="title"><?php echo $runner->type ?></p>
+                <p>Phone :  <?php echo $runner->tel?></p>
+
+
+              </div>
+                </div>
+              </div>
+
+            </div>
+        <?php endforeach;
+        } ?>
+        </tbody>
+
+
+   </table>
 </div>
 
-<div class="form-group">
-    <label for="fieldFname" class="col-sm-2 control-label">Fname</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["Fname", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldFname"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldLname" class="col-sm-2 control-label">Lname</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["Lname", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldLname"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldSsid" class="col-sm-2 control-label">SSID</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["SSID", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldSsid"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldTel" class="col-sm-2 control-label">Tel</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["Tel", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldTel"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldUsername" class="col-sm-2 control-label">Username</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["username", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldUsername"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldPassword" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textArea(["Password", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldPassword"]) ?>
-    </div>
+<!-- เเถบเลื่อนหน้า -->
+<div class="container">
+    <ul class="pager">
+      <li class="w3-btn " style="margin-left: 10px;">
+          <?php echo $page->current, "/", $page->total_pages ?>
+      </li>
+     <a href="/Marathon/marathon/runner/search?page=<?php echo $page->next ?>"><li class="w3-btn w3-white w3-border w3-border-black  w3-round-xxlarge " style="float: right; color:white !important; background-color: black !important;"><h5> ></h5> </li></a>
+     <a href="/Marathon/marathon/runner/search?page=<?php echo $page->before ?>"><li class="w3-btn w3-white w3-border  w3-border-black  w3-round-xxlarge w3-left" style="margin-left: -40px; color:white !important; background-color: black !important;" > <h5> <</h5>  </li></a>
+ </ul>
 </div>
 
 
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-default"]) ?>
-    </div>
-</div>
 
-<?php echo $this->tag->endForm(); ?>
+
+</html>

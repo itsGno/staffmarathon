@@ -11,7 +11,28 @@ class ProblemreportController extends ControllerBase
      */
     public function indexAction()
     {
-        $this->persistent->parameters = null;
+        $numberPage = 1;
+        if ($this->request->isPost()) {
+            $query = Criteria::fromInput($this->di, 'Problemreport', $_POST);
+            $this->persistent->parameters = $query->getParams();
+        } else {
+            $numberPage = $this->request->getQuery("page", "int");
+        }
+
+        $parameters = $this->persistent->parameters;
+        if (!is_array($parameters)) {
+            $parameters = [];
+        }
+        $parameters["order"] = "id";
+            $parameters = null;
+            $problemreport = Problemreport::find($parameters);
+        $paginator = new Paginator([
+            'data' => $problemreport,
+            'limit'=> 10,
+            'page' => $numberPage
+        ]);
+
+        $this->view->page = $paginator->getPaginate();
     }
 
     /**
@@ -35,7 +56,7 @@ class ProblemreportController extends ControllerBase
 
         $problemreport = Problemreport::find($parameters);
         if (count($problemreport) == 0) {
-          //  $this->flash->notice("The search did not find any problemreport");
+            $this->flash->notice("The search did not find any problemreport");
             $parameters = null;
             $problemreport = Problemreport::find($parameters);
             
@@ -74,7 +95,7 @@ class ProblemreportController extends ControllerBase
 
                 $this->dispatcher->forward([
                     'controller' => "problemreport",
-                    'action' => 'search'
+                    'action' => 'index'
                 ]);
 
                 return;
@@ -103,7 +124,7 @@ class ProblemreportController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "problemreport",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;
@@ -146,7 +167,7 @@ class ProblemreportController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "problemreport",
-            'action' => 'search'
+            'action' => 'index'
         ]);
     }
 
@@ -160,7 +181,7 @@ class ProblemreportController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "problemreport",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;
@@ -174,7 +195,7 @@ class ProblemreportController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "problemreport",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;
@@ -209,7 +230,7 @@ class ProblemreportController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "problemreport",
-            'action' => 'search'
+            'action' => 'index'
         ]);
     }
 
@@ -226,7 +247,7 @@ class ProblemreportController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "problemreport",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;
@@ -240,7 +261,7 @@ class ProblemreportController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "problemreport",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;
@@ -250,7 +271,7 @@ class ProblemreportController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "problemreport",
-            'action' => "search"
+            'action' => "index"
         ]);
     }
 
