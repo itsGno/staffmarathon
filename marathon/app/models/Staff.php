@@ -46,6 +46,8 @@ class Staff extends \Phalcon\Mvc\Model
      * @Column(type="string", nullable=false)
      */
     public $password;
+    
+    public $images;
 
     /**
      * Initialize method for model.

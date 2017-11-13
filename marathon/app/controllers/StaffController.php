@@ -112,7 +112,19 @@ class StaffController extends ControllerBase
         $staff->category = $this->request->getPost("category");
         $staff->username = $this->request->getPost("username");
         $staff->password = $this->request->getPost("password");
-        
+        $this->view->disable();
+        // Check if the user has uploaded files
+        if ($this->request->hasFiles() == true) {
+            // Print the real file names and sizes
+            foreach ($this->request->getUploadedFiles() as $file) { 
+                echo "1".$file->getName();      
+                if($file->moveTo('images/' . $file->getName())){      
+                    $staff->images = $file->getName();
+                    echo "2".$file->getName();
+                }    
+            }
+        }
+
 
         if (!$staff->save()) {
             foreach ($staff->getMessages() as $message) {
