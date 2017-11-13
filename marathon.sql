@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2017 at 04:25 PM
+-- Generation Time: Nov 13, 2017 at 04:50 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -150,7 +150,7 @@ CREATE TABLE `staff` (
   `category` text NOT NULL,
   `username` text NOT NULL,
   `password` text NOT NULL,
-  `images` text
+  `images` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

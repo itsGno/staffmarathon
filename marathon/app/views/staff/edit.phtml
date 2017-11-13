@@ -20,15 +20,7 @@
 
 <?php echo $this->getContent(); ?>
 
-<?php
-    echo $this->tag->form(
-        [
-            "staff/save",
-            "autocomplete" => "off",
-            "class" => "form-horizontal"
-        ]
-    );
-?>
+<form method="post" action="search" enctype="multipart/form-data">
 
 <div class="form-group">
     <label for="fieldFname" class="col-sm-2 control-label">Fname</label>
@@ -74,9 +66,4 @@
     </div>
 </div>
 
-
-
-
-
-
-<?php echo $this->tag->endForm(); ?>
+</form>
