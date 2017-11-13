@@ -11,7 +11,29 @@ class EmergencyreportController extends ControllerBase
      */
     public function indexAction()
     {
-        $this->persistent->parameters = null;
+        $numberPage = 1;
+        if ($this->request->isPost()) {
+            $query = Criteria::fromInput($this->di, 'Emergencyreport', $_POST);
+            $this->persistent->parameters = $query->getParams();
+        } else {
+            $numberPage = $this->request->getQuery("page", "int");
+        }
+
+        $parameters = $this->persistent->parameters;
+        if (!is_array($parameters)) {
+            $parameters = [];
+        }
+        $parameters["order"] = "id";
+        $parameters = null;
+        $emergencyreport = Emergencyreport::find($parameters);
+
+        $paginator = new Paginator([
+            'data' => $emergencyreport,
+            'limit'=> 10,
+            'page' => $numberPage
+        ]);
+
+        $this->view->page = $paginator->getPaginate();
     }
 
     /**
@@ -35,8 +57,8 @@ class EmergencyreportController extends ControllerBase
 
         $emergencyreport = Emergencyreport::find($parameters);
         if (count($emergencyreport) == 0) {
-         //   $this->flash->notice("The search did not find any emergencyreport");
-            $parameters = null;
+        $this->flash->notice("The search did not find any emergencyreport");
+        $parameters = null;
         $emergencyreport = Emergencyreport::find($parameters);
         
     
@@ -74,7 +96,7 @@ class EmergencyreportController extends ControllerBase
 
                 $this->dispatcher->forward([
                     'controller' => "emergencyreport",
-                    'action' => 'search'
+                    'action' => 'index'
                 ]);
 
                 return;
@@ -103,7 +125,7 @@ class EmergencyreportController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "emergencyreport",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;
@@ -147,7 +169,7 @@ class EmergencyreportController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "emergencyreport",
-            'action' => 'search'
+            'action' => 'index'
         ]);
     }
 
@@ -161,7 +183,7 @@ class EmergencyreportController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "emergencyreport",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;
@@ -175,7 +197,7 @@ class EmergencyreportController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "emergencyreport",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;
@@ -210,7 +232,7 @@ class EmergencyreportController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "emergencyreport",
-            'action' => 'search'
+            'action' => 'index'
         ]);
     }
 
@@ -241,7 +263,7 @@ class EmergencyreportController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "emergencyreport",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;

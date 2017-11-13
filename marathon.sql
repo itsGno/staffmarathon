@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2017 at 06:31 PM
+-- Generation Time: Nov 08, 2017 at 04:57 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -41,8 +41,8 @@ CREATE TABLE `checkpointreport` (
 
 CREATE TABLE `emergencyreport` (
   `id` int(11) NOT NULL,
-  `header` text NOT NULL,
-  `detail` text NOT NULL,
+  `header` varchar(255) NOT NULL,
+  `detail` varchar(255) NOT NULL,
   `runnerId` int(11) NOT NULL,
   `staffId` int(11) NOT NULL,
   `lag` double NOT NULL,
@@ -56,7 +56,8 @@ CREATE TABLE `emergencyreport` (
 --
 
 INSERT INTO `emergencyreport` (`id`, `header`, `detail`, `runnerId`, `staffId`, `lag`, `lng`, `status`, `level`) VALUES
-(1, 'test new emergency', 'test new emergency', 1, 3, 18.804320806128, 98.951153755188, 0, 1);
+(1, 'test new emergency', 'test new emergency', 1, 3, 18.804320806128, 98.951153755188, 0, 1),
+(2, 'test', 'test', 1, 3, 18.80766723546, 98.953557014465, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -79,8 +80,8 @@ CREATE TABLE `news` (
 
 CREATE TABLE `problemreport` (
   `id` int(11) NOT NULL,
-  `header` text NOT NULL,
-  `detail` text NOT NULL,
+  `header` varchar(1024) NOT NULL,
+  `detail` varchar(1024) NOT NULL,
   `senderId` int(11) NOT NULL,
   `staffId` int(11) NOT NULL,
   `lag` double NOT NULL,
@@ -142,11 +143,11 @@ CREATE TABLE `service` (
 
 CREATE TABLE `staff` (
   `id` int(11) NOT NULL,
-  `fname` text NOT NULL,
-  `lname` text NOT NULL,
-  `category` text NOT NULL,
-  `username` text NOT NULL,
-  `password` text NOT NULL
+  `fname` varchar(1024) NOT NULL,
+  `lname` varchar(1024) NOT NULL,
+  `category` varchar(1024) NOT NULL,
+  `username` varchar(1024) NOT NULL,
+  `password` varchar(1024) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -217,7 +218,7 @@ ALTER TABLE `checkpointreport`
 -- AUTO_INCREMENT for table `emergencyreport`
 --
 ALTER TABLE `emergencyreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `news`
 --

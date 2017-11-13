@@ -11,7 +11,31 @@ class StaffController extends ControllerBase
      */
     public function indexAction()
     {
-        $this->persistent->parameters = null;
+        $numberPage = 1;
+        if ($this->request->isPost()) {
+            $query = Criteria::fromInput($this->di, 'Staff', $_POST);
+            $this->persistent->parameters = $query->getParams();
+        } else {
+            $numberPage = $this->request->getQuery("page", "int");
+        }
+
+        $parameters = $this->persistent->parameters;
+        if (!is_array($parameters)) {
+            $parameters = [];
+        }
+        $parameters["order"] = "id";
+        $parameters=null;
+       
+        $staff = Staff::find($parameters);
+
+
+        $paginator = new Paginator([
+            'data' => $staff,
+            'limit'=> 10,
+            'page' => $numberPage
+        ]);
+
+        $this->view->page = $paginator->getPaginate();
     }
 
     /**
@@ -234,7 +258,7 @@ class StaffController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "staff",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;

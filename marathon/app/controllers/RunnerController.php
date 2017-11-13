@@ -11,7 +11,33 @@ class RunnerController extends ControllerBase
      */
     public function indexAction()
     {
-        $this->persistent->parameters = null;
+        $numberPage = 1;
+        if ($this->request->isPost()) {
+            
+            $query = Criteria::fromInput($this->di, 'Runner', $_POST);
+            $this->persistent->parameters = $query->getParams();
+        } else {
+            $numberPage = $this->request->getQuery("page", "int");
+        }
+
+        $parameters = $this->persistent->parameters;
+        if (!is_array($parameters)) {
+            
+            $parameters = [];
+        }
+        $parameters["order"] = "id";
+        $parameters =null;
+        $runner = Runner::find($parameters);
+        
+   
+
+        $paginator = new Paginator([
+            'data' => $runner,
+            'limit'=> 10,
+            'page' => $numberPage
+        ]);
+
+        $this->view->page = $paginator->getPaginate();
     }
 
     /**
@@ -226,7 +252,7 @@ class RunnerController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "runner",
-                'action' => 'search'
+                'action' => 'index'
             ]);
 
             return;
