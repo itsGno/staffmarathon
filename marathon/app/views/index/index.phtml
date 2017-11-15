@@ -26,8 +26,11 @@
    
    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         var waypts = [];
-        var checkboxArray = [ new google.maps.LatLng(18.805197, 98.950159),
-                              new google.maps.LatLng(18.806627, 98.951927)];
+        var checkboxArray = [ new google.maps.LatLng(18.808265, 98.954752),
+                              new google.maps.LatLng(18.800597, 98.951306),
+                              new google.maps.LatLng(18.795357, 98.961808),
+                              new google.maps.LatLng(18.805465, 98.960038),
+                              new google.maps.LatLng(18.808265, 98.954752)];
         for (var i = 0; i < checkboxArray.length; i++) {
             waypts.push({
               location: checkboxArray[i],
@@ -35,8 +38,8 @@
             });
         }
         directionsService.route({
-          origin: {lat: 18.804423, lng: 98.947822},
-          destination:{lat: 18.808335, lng: 98.954763},
+          origin: {lat: 18.808265, lng: 98.954752},
+          destination:{lat: 18.808265, lng: 98.954752},
           waypoints: waypts,
           optimizeWaypoints: true,
           travelMode: 'WALKING',
