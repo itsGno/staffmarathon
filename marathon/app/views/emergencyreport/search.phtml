@@ -48,6 +48,55 @@
 .add{
   margin-left: 10px;
 }
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.title {
+    color: Black;
+    font-size: 18px;
+}
+
+.media {
+    text-decoration: none;
+    font-size: 25px !important;
+    color: black;
+    width: 20px;
+    height: 32px;
+
+}
+.social{
+  text-align: center;
+  float: left;
+  width: 50%;
+
+}
+.name{
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #17a2b8;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.photo{
+  height: 300px;
+}
+
+button:hover, a:hover {
+    opacity: 0.7;
+}
+.select{
+  color: black !important;
+  border-color: black !important;
+}
 </style>
 
 
@@ -94,25 +143,47 @@
          <tr class="w3-hover-red">
          <td><?php echo $emergencyreport->id ?></td>
          <td><?php echo $emergencyreport->header ?></td>
-         <td>
-           <?php $runnername = Runner::findFirstByid($emergencyreport->runnerId);?>
 
-           <?php echo Phalcon\Tag::linkTo(
-              [
-                  "runner/search",
-                  "$runnername->fname"
-            ]
-            ); ?>
-         </td>
-         <td>
-            <?php $staffname = Staff::findFirstByid($emergencyreport->staffId);?>
-            <?php echo Phalcon\Tag::linkTo(
-              [
-                  "staff/search",
-                  "$staffname->fname"
-            ]
-            ); ?>
-        </td>
+          <?php $runnername = Runner::findFirstByid($emergencyreport->runnerId);?>
+         <td data-toggle="modal" data-target="#myModal<?php echo $runnername->id ?>"  ><?php echo $runnername->fname ?></a></td>
+
+         <div class="container">
+           <!-- Trigger the modal with a button -->
+           <!-- Modal -->
+           <div class="modal fade" id="myModal<?php echo $runnername->id ?>" role="dialog">
+             <div class="modal-dialog">
+               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+           <div class="card">
+           <img src="../public/images/<?php echo $runnername->images ?>"  style="height:300px;">
+
+             <h5 class="name"> <?php echo $runnername->fname." ".$runnername->lname ?></h5>
+             <p class="title"><?php echo $runnername->type ?></p>
+             <p>Phone :  <?php echo $runnername->tel?></p>
+           </div>
+             </div>
+           </div>
+
+         </div>
+
+         <!--กล่อง pop up staffname -->
+           <?php
+           $staffname = Staff::findFirstByid($emergencyreport->staffId);?>
+           <td data-toggle="modal" data-target="#myModal1<?php echo $staffname->id ?>"  ><?php echo $staffname->fname ?></a></td>
+
+           <div class="container">
+             <!-- Trigger the modal with a button -->
+             <!-- Modal -->
+             <div class="modal fade" id="myModal1<?php echo $staffname->id ?>" role="dialog">
+               <div class="modal-dialog">
+                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+             <div class="card">
+             <img src="../public/images/<?php echo $staffname->images ?>"  style="height:300px;">
+               <h5 class="name"> <?php echo $staffname->fname." ".$staffname->lname ?></h5>
+               <p class="title">Category : <?php echo $staffname->category ?></p>
+             </div>
+               </div>
+             </div>
+           </div>
          <td><?php echo $emergencyreport->level ?></td>
 
           <td><a href="/Marathon/marathon/emergencyreport/edit/<?php echo $emergencyreport->id ?>">View</td>
