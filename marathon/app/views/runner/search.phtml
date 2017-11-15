@@ -79,7 +79,7 @@
   display: inline-block;
   padding: 8px;
   color: white;
-  background-color: #17a2b8;
+  background-color: black;
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -155,12 +155,12 @@ button:hover, a:hover {
                 <div class="modal-dialog">
                   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
               <div class="card">
-              <img src="../public/images/<?php echo $runner->images ?>"  style="height:300px;">
+              <img src="../public/images/<?php echo $runner->images ?>"  style="height:270px;">
 
                 <h5 class="name"> <?php echo $runner->fname." ".$runner->lname ?></h5>
                 <p class="title"><?php echo $runner->type ?></p>
                 <p>Phone :  <?php echo $runner->tel?></p>
-
+                <p>SSID :  <?php echo $runner->sSID?></p>
 
               </div>
                 </div>
