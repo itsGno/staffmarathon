@@ -32,19 +32,21 @@
      <?php $id = $this->session->get('id');?>
    
          <?php echo $this->tag->hiddenField(["senderId", "type" => "number", "class" => "form-control ", "id" => "fieldSenderid","value" => "$id"]) ?>
- 
-     <label for="fieldStaffid" class="col-sm-5 control-label">Staff ID</label>
- 
-         <?php echo $this->tag->textField(["staffId", "type" => "number", "class" => "form-control ", "id" => "fieldStaffid"]) ?>
- 
+  
          <?php echo $this->tag->hiddenField(["lag", "size" => 30, "class" => "form-control", "id" => "fieldLag"]) ?>
   
          <?php echo $this->tag->hiddenField(["lng", "size" => 30, "class" => "form-control", "id" => "fieldLng"]) ?>
-  
-
-     <div class="col-md-5">
+     <div class="col-md-5" style="padding:0;margin-top:10px">            
+                        <select class="form-control mr-sm-2" name="category" id="fieldcategory">
+                    <option value="">Category</option>
+                    <option value="water">Water point</option>
+                    <option value="checkpoint">Check point</option>
+                    <option value="toilet">toilet</option>
+                </select>
+                </div>
+     <div class="col-md-5"  style="padding:0;margin-top:10px">
      <div class="radio">
-     <label><input type="radio" name="level" value="1">level 1</label>
+     <label><input type="radio" name="level" value="1" checked>level 1</label>
    </div>
    <div class="radio">
      <label><input type="radio" name="level" value="2">level 2</label>
