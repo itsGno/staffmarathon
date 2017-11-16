@@ -116,6 +116,7 @@ button:hover, a:hover {
     <option value="">Category</option>
     <option value="water">Water point</option>
     <option value="checkpoint">Check point</option>
+      <option value="toilet">Toilet</option>
   </select>
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   <a href="/Marathon/marathon/problemreport/new/" style="color:#28a745;"><div class="add btn btn-outline-success my-2 my-sm-0" >Add</div></a>
@@ -170,10 +171,10 @@ button:hover, a:hover {
          </div>
 
        <td><?php echo $problemreport->category ?></td>
-      
+
          <td><?php echo $problemreport->level ?></td>
        <td><?php echo $problemreport->status ?></td>
-         
+
 
              <td><a href="/Marathon/marathon/problemreport/edit/<?php echo $problemreport->id ?>">View</td>
          </tr>

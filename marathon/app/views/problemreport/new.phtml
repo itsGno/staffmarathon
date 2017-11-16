@@ -13,7 +13,7 @@
             "problemreport/create",
             "autocomplete" => "off",
             "style" => "width:100%"
-            
+
         ]
     );
 ?>
@@ -21,27 +21,27 @@
      <div id="map" style="margin-left: 0%; box-shadow: 0px 0px 4px 0px;" class="col-md-8"></div>
  <div class="col-md-4">
      <label for="fieldHeader" class="col-sm-4 control-label" >Title</label>
-    
+
          <?php echo $this->tag->textArea(["header", "cols" => 30, "rows" => 4, "class" => "form-control ", "id" => "fieldHeader"]) ?>
-   
+
 
      <label for="fieldDetail" class="col-sm-4 control-label" >Detail</label>
-  
+
          <?php echo $this->tag->textArea(["detail", "cols" => 30, "rows" => 4, "class" => "form-control ", "id" => "fieldDetail"]) ?>
 
      <?php $id = $this->session->get('id');?>
-   
+
          <?php echo $this->tag->hiddenField(["senderId", "type" => "number", "class" => "form-control ", "id" => "fieldSenderid","value" => "$id"]) ?>
-  
+
          <?php echo $this->tag->hiddenField(["lag", "size" => 30, "class" => "form-control", "id" => "fieldLag"]) ?>
-  
+
          <?php echo $this->tag->hiddenField(["lng", "size" => 30, "class" => "form-control", "id" => "fieldLng"]) ?>
-     <div class="col-md-5" style="padding:0;margin-top:10px">            
+     <div class="col-md-5" style="padding:0;margin-top:10px">
                         <select class="form-control mr-sm-2" name="category" id="fieldcategory">
                     <option value="">Category</option>
                     <option value="water">Water point</option>
                     <option value="checkpoint">Check point</option>
-                    <option value="toilet">toilet</option>
+                    <option value="toilet">Toilet</option>
                 </select>
                 </div>
      <div class="col-md-5"  style="padding:0;margin-top:10px">
