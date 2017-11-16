@@ -35,6 +35,13 @@ class Problemreport extends \Phalcon\Mvc\Model
 
     /**
      *
+     * @var string
+     * @Column(type="string", nullable=false)
+     */
+    public $category;
+    
+    /**
+     *
      * @var integer
      * @Column(type="integer", length=11, nullable=false)
      */

@@ -112,6 +112,7 @@ class ProblemreportController extends ControllerBase
             $this->tag->setDefault("lng", $problemreport->lng);
             $this->tag->setDefault("status", $problemreport->status);
             $this->tag->setDefault("level", $problemreport->level);
+            $this->tag->setDefault("category", $problemreport->category);
             
         }
     }
@@ -138,18 +139,11 @@ class ProblemreportController extends ControllerBase
         $problemreport->lag = $this->request->getPost("lag");
         $problemreport->lng = $this->request->getPost("lng");
         $problemreport->status = $this->request->getPost("status");
+        $problemreport->category = $this->request->getPost("category");                       
         $problemreport->level = $this->request->getPost("level");
+      
         
-        $staff = Staff::findFirstByid($problemreport->staffId);
-        if($staff==null){
-            $this->flash->error("runner id does not exist " . $problemreport->staffId);
-            $this->dispatcher->forward([
-                'controller' => "emergencyreport",
-                'action' => 'new'
-            ]);
-
-            return;
-        }  
+     
         if (!$problemreport->save()) {
             foreach ($problemreport->getMessages() as $message) {
                 $this->flash->error($message);
@@ -208,6 +202,7 @@ class ProblemreportController extends ControllerBase
         $problemreport->lag = $this->request->getPost("lag");
         $problemreport->lng = $this->request->getPost("lng");
         $problemreport->status = $this->request->getPost("status");
+        $problemreport->category = $this->request->getPost("category");        
         $problemreport->level = $this->request->getPost("level");
         
 

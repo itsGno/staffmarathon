@@ -112,8 +112,13 @@ button:hover, a:hover {
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
+<select class="form-control mr-sm-2" name="category" id="">
+    <option value="">Category</option>
+    <option value="water">Water point</option>
+    <option value="checkpoint">Check point</option>
+  </select>
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    <button class="add btn btn-outline-success my-2 my-sm-0" ><a href="/Marathon/marathon/problemreport/new/" style="color:#28a745;">Add</a></button>
+  <a href="/Marathon/marathon/problemreport/new/" style="color:#28a745;"><button class="add btn btn-outline-success my-2 my-sm-0" >Add</button></a>
 </form>
 </div>
 </div>
@@ -129,8 +134,9 @@ button:hover, a:hover {
          <th>Id</th>
          <th>Title</th>
           <th>Sender Name</th>
-         <th>Staff Name</th>
+         <th>Category</th>
          <th>Level</th>
+         <th>Status</th>
          <th>View</th>
        </tr>
      </thead>
@@ -146,7 +152,7 @@ button:hover, a:hover {
 
           <!--กล่อง pop up sendername -->
          <?php $sendername = Staff::findFirstByid($problemreport->senderId);?>
-         <td data-toggle="modal" data-target="#myModal<?php echo $sendername->id ?>"  ><?php echo $sendername->fname ?></a></td>
+         <td data-toggle="modal" data-target="#myModal<?php echo $sendername->id ?>"  ><?php echo $sendername->fname." ".$sendername->lname ?></a></td>
 
          <div class="container">
            <!-- Trigger the modal with a button -->
@@ -155,7 +161,7 @@ button:hover, a:hover {
              <div class="modal-dialog">
                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
            <div class="card">
-           <img src="../public/images/<?php echo $sendername->images ?>"  style="height:300px;">
+           <img src="../public/images/<?php echo $sendername->images ?>"  style="height:270px;">
              <h5 class="name"> <?php echo $sendername->fname." ".$sendername->lname ?></h5>
              <p class="title"> Category : <?php echo $sendername->category ?></p>
            </div>
@@ -163,26 +169,11 @@ button:hover, a:hover {
            </div>
          </div>
 
-       <!--กล่อง pop up staffname -->
-         <?php
-         $staffname = Staff::findFirstByid($problemreport->staffId);?>
-         <td data-toggle="modal" data-target="#myModal1<?php echo $staffname->id ?>"  ><?php echo $staffname->fname ?></a></td>
-
-         <div class="container">
-           <!-- Trigger the modal with a button -->
-           <!-- Modal -->
-           <div class="modal fade" id="myModal1<?php echo $staffname->id ?>" role="dialog">
-             <div class="modal-dialog">
-               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-           <div class="card">
-           <img src="../public/images/<?php echo $staffname->images ?>"  style="height:270px;">
-             <h5 class="name"> <?php echo $staffname->fname." ".$staffname->lname ?></h5>
-             <p>Category : <?php echo $staffname->category ?></p>
-           </div>
-             </div>
-           </div>
-         </div>
+       <td><?php echo $problemreport->category ?></td>
+      
          <td><?php echo $problemreport->level ?></td>
+       <td><?php echo $problemreport->status ?></td>
+         
 
              <td><a href="/Marathon/marathon/problemreport/edit/<?php echo $problemreport->id ?>">View</td>
          </tr>

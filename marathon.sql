@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2017 at 02:53 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Generation Time: Nov 15, 2017 at 03:54 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -56,8 +58,8 @@ CREATE TABLE `emergencyreport` (
 --
 
 INSERT INTO `emergencyreport` (`id`, `header`, `detail`, `runnerId`, `staffId`, `lag`, `lng`, `status`, `level`) VALUES
-(1, 'test new emergency', 'test new emergency', 1, 3, 18.804320806128, 98.951153755188, 0, 1),
-(2, '123123', '1123', 2, 3, 18.805268841449, 98.960251805547, 0, 3);
+(1, 'Checkpoint 2', 'Accident at checkpoint 2', 1, 2, 18.805099838307, 98.950178963423, 0, 1),
+(2, 'Checkpoint 3', 'Accident at checkpoint 3', 2, 2, 18.804824171552, 98.949492317915, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -95,7 +97,7 @@ CREATE TABLE `problemreport` (
 --
 
 INSERT INTO `problemreport` (`id`, `header`, `detail`, `senderId`, `staffId`, `lag`, `lng`, `status`, `level`) VALUES
-(1, 'test new problem', 'test new problem', 3, 1, 18.804365239427, 98.952655792236, 0, 1);
+(1, 'Water in Checkpoint 2', 'No water', 2, 1, 18.805189792683, 98.950007302046, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -111,16 +113,18 @@ CREATE TABLE `runner` (
   `sSID` varchar(255) NOT NULL,
   `tel` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `images` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `runner`
 --
 
-INSERT INTO `runner` (`id`, `fname`, `lname`, `type`, `sSID`, `tel`, `username`, `password`) VALUES
-(1, 'testFname', 'testLname', 'marathon', 'testSSID', 'testTel', 'testUser', 'testPass'),
-(2, 'qweqwe', 'qweqw', 'half-marathon', 'qweqwe', 'qweqwe', 'qweqwe', 'qweqwe');
+INSERT INTO `runner` (`id`, `fname`, `lname`, `type`, `sSID`, `tel`, `username`, `password`, `images`) VALUES
+(1, 'Chaloempong', 'Budkra', 'Mini Marathon', '1659900779653', '0831611245', 'illumillal', '123456', 'runner3.jpg'),
+(2, 'Poramin', 'Sornngam', 'Marathon', '1659900676432', '0831611345', 'illumillal', '123456', 'runner1.jpg'),
+(3, 'Nicharee', 'Yooyong', 'Half Marathon', '165889944623', '084163453', 'illumillal', '123456', 'runner2.jpg');
 
 -- --------------------------------------------------------
 
@@ -156,10 +160,8 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `fname`, `lname`, `category`, `username`, `password`, `images`) VALUES
-(1, 'testFname', 'testLName', 'water', 'teststaff', 'passstaff', ''),
-(2, 'firstname', 'lastname', 'checkpoint', 'username1', 'password1', ''),
-(7, 'qweqwe', 'qweqwe', 'qweqw', 'qweqwe', 'qweq', '20170810_145804.jpg'),
-(8, 'test', 'test', 'test', 'test', 'test', '20170810_145753.jpg');
+(1, 'Panpech', 'Pothong', 'Water', 'oattimman', '1234567', 'staff2.jpg'),
+(2, 'Thanongsak', ' Nate-anong', 'Checkpoint', 'illumillal', '1234567', 'staff1.jpg');
 
 --
 -- Indexes for dumped tables
@@ -216,36 +218,44 @@ ALTER TABLE `staff`
 --
 ALTER TABLE `checkpointreport`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `emergencyreport`
 --
 ALTER TABLE `emergencyreport`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `problemreport`
 --
 ALTER TABLE `problemreport`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `runner`
 --
 ALTER TABLE `runner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
