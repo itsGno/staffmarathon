@@ -116,6 +116,66 @@ class ProblemreportController extends ControllerBase
             
         }
     }
+     /**
+     * Edits a problemreport
+     *
+     * @param string $id
+     */
+    public function doneAction($id)
+    {
+        if (!$this->request->isPost()) {
+            $this->dispatcher->forward([
+                'controller' => "problemreport",
+                'action' => 'index'
+            ]);
+
+            return;
+        }
+
+        $id = $this->request->getPost("id");
+        $problemreport = Problemreport::findFirstByid($id);
+
+        if (!$problemreport) {
+            $this->flash->error("problemreport does not exist " . $id);
+
+            $this->dispatcher->forward([
+                'controller' => "problemreport",
+                'action' => 'index'
+            ]);
+
+            return;
+        }
+
+        $problemreport->status = $this->request->getPost("status");
+
+        
+
+        if (!$problemreport->save()) {
+
+            foreach ($problemreport->getMessages() as $message) {
+                $this->flash->error($message);
+            }
+
+            $this->dispatcher->forward([
+                'controller' => "problemreport",
+                'action' => 'edit',
+                'params' => [$problemreport->id]
+            ]);
+
+            return;
+        }
+
+        $this->flash->success("problemreport was updated successfully");
+
+        $this->dispatcher->forward([
+            'controller' => "problemreport",
+            'action' => 'index',
+  
+            
+        ]);
+        return;
+        
+    }
 
     /**
      * Creates a new problemreport

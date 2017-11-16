@@ -149,10 +149,31 @@
             <div ><h3 style="border-bottom-style: solid; border-width: 2px; border-bottom-color:#ab5cef; padding-left: 10%;">MORE DETAIL</h3></div >
             <span >Category : <?php echo $this->tag->getValue("category"); ?></span>
             <br>
-            <span >Sender : <?php echo $sendername->fname." ".$sendername->lname; ?></span>
             <p >Level : <?php echo $this->tag->getValue("level"); ?></p>
         </div>
     </div>
+
+
+    <?php
+      $id = $this->tag->getValue("id");
+     
+    echo $this->tag->form(
+        [
+            "problemreport/done/$id",
+            "autocomplete" => "off",
+            "style" => "width:100%"
+
+        ]
+    );
+?>
+
+
+         <?php echo $this->tag->hiddenField(["id", "type" => "number", "class" => "form-control ", "id" => "fieldId","value" => "$id"]) ?>
+         <?php echo $this->tag->hiddenField(["status", "type" => "number", "class" => "form-control ", "id" => "fieldStatus","value" => "1"]) ?>
+
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Done</button>
+
+<?php echo $this->tag->endForm(); ?>
 
 
 <script>

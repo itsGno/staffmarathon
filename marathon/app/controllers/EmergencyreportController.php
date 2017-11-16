@@ -174,6 +174,67 @@ class EmergencyreportController extends ControllerBase
         ]);
     }
 
+     /**
+     * Edits a problemreport
+     *
+     * @param string $id
+     */
+    public function doneAction($id)
+    {
+        if (!$this->request->isPost()) {
+            $this->dispatcher->forward([
+                'controller' => "emergencyreport",
+                'action' => 'index'
+            ]);
+
+            return;
+        }
+
+        $id = $this->request->getPost("id");
+        $emergencyreport = emergencyreport::findFirstByid($id);
+
+        if (!$emergencyreport) {
+            $this->flash->error("emergencyreport does not exist " . $id);
+
+            $this->dispatcher->forward([
+                'controller' => "emergencyreport",
+                'action' => 'index'
+            ]);
+
+            return;
+        }
+
+        $emergencyreport->status = $this->request->getPost("status");
+
+        
+
+        if (!$emergencyreport->save()) {
+
+            foreach ($problemreport->getMessages() as $message) {
+                $this->flash->error($message);
+            }
+
+            $this->dispatcher->forward([
+                'controller' => "emergencyreport",
+                'action' => 'edit',
+                'params' => [$emergencyreport->id]
+            ]);
+
+            return;
+        }
+
+        $this->flash->success("emergency was updated successfully");
+
+        $this->dispatcher->forward([
+            'controller' => "emergencyreport",
+            'action' => 'index',
+  
+            
+        ]);
+        return;
+        
+    }
+
     /**
      * Saves a emergencyreport edited
      *
