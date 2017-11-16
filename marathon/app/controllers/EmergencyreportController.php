@@ -1,11 +1,12 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
 class EmergencyreportController extends ControllerBase
 {
+  
     /**
      * Index action
      */
@@ -60,8 +61,8 @@ class EmergencyreportController extends ControllerBase
         $this->flash->notice("The search did not find any emergencyreport");
         $parameters = null;
         $emergencyreport = Emergencyreport::find($parameters);
-        
-    
+
+
         }
 
         $paginator = new Paginator([
@@ -113,7 +114,7 @@ class EmergencyreportController extends ControllerBase
             $this->tag->setDefault("lng", $emergencyreport->lng);
             $this->tag->setDefault("status", $emergencyreport->status);
             $this->tag->setDefault("level", $emergencyreport->level);
-            
+
         }
     }
 
@@ -140,7 +141,7 @@ class EmergencyreportController extends ControllerBase
         $emergencyreport->lng = $this->request->getPost("lng");
         $emergencyreport->status = $this->request->getPost("status");
         $emergencyreport->level = $this->request->getPost("level");
-        
+
         $runner = Runner::findFirstByid($emergencyreport->runnerId);
         if($runner==null){
             $this->flash->error("runner id does not exist " . $emergencyreport->runnerId);
@@ -150,7 +151,7 @@ class EmergencyreportController extends ControllerBase
             ]);
 
             return;
-        }        
+        }
         if (!$emergencyreport->save()) {
             foreach ($emergencyreport->getMessages() as $message) {
                 $this->flash->error($message);
@@ -163,7 +164,7 @@ class EmergencyreportController extends ControllerBase
 
             return;
         }
-    
+
 
         $this->flash->success("emergencyreport was created successfully");
 
@@ -211,7 +212,7 @@ class EmergencyreportController extends ControllerBase
         $emergencyreport->lng = $this->request->getPost("lng");
         $emergencyreport->status = $this->request->getPost("status");
         $emergencyreport->level = $this->request->getPost("level");
-        
+
 
         if (!$emergencyreport->save()) {
 
