@@ -17,7 +17,7 @@ class AuthenController extends ControllerBase{
         $id = $member->id;
         // $this->security->hash($password); // สร้างรหัสผ่านแบบเข้ารหัส เปลี่ยนใหม่เรื่อยๆจากรหัสผ่านเดิม
 
-        if($password == $member->password){ // ตรวจสอบรหัสถูกต้องตรงกันจากที่กรอกเข้ามาและฐานข้อมูล
+        if($password == $member->password&&$password!=''){ // ตรวจสอบรหัสถูกต้องตรงกันจากที่กรอกเข้ามาและฐานข้อมูล
             $this->setSession($username,$password,$id);
           if(!empty($remember))
           $this->setCookies($username, $password,$id); // Fn ตั้งค่าคุ๊กกี้
