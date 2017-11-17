@@ -1,8 +1,21 @@
 
+
+
+<?php echo $this->getContent(); ?>
+
 <div id="map"></div>
 <div id="message"></div>
+
+<?php 
+foreach ($page->items as $emergencyreport){ ?>
+         <tr class="w3-hover-red">
+         <td><?php echo $emergencyreport->id ?></td>
+         <td><?php echo $emergencyreport->header ?></td>
+<?php } ?>
+
+
      
-<script>
+<script type="text/javascript">
     var map;
     var marker;
     var messagewindow;
@@ -22,8 +35,20 @@
     $(document).ready(function() {
       calculateAndDisplayRoute(directionsService, directionsDisplay);
     });
+
+    var data = JSON.parse('<?php echo json_encode($page->items) ?>');
+    for(var i=0;i<data.length;i++){
+        var position = new google.maps.LatLng(data[i].lag,data[i].lng);
+        marker = new google.maps.Marker({
+          position: position,
+          map: map,
+        });
+        console.log(data[i].lag +" "+ data[i].lng);
+    }
+    marker.setMap(map);
+
    }
-   
+
    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         var waypts = [];
         var checkboxArray = [ new google.maps.LatLng(18.808265, 98.954752),
