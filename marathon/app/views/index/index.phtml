@@ -41,9 +41,26 @@ foreach ($page->items as $emergencyreport){ ?>
       var position = new google.maps.LatLng(data[i].lag,data[i].lng);
       var marker = new google.maps.Marker({
         position: position,
-        map: map
+        map: map,
+        label: 'E'
       });
-      bindInfoWindow(marker,map,infowindow,data[i].header);
+      var infowincontent = document.createElement('div');
+      var strong = document.createElement('strong');
+      strong.textContent = data[i].header;
+      infowincontent.appendChild(strong);
+      infowincontent.appendChild(document.createElement('br'));
+      var text = document.createElement('text');
+      text.textContent = data[i].detail;
+      infowincontent.appendChild(text);
+      infowincontent.appendChild(document.createElement('br'));
+      var a = document.createElement('a');
+      var linkText = document.createTextNode("View");
+      a.appendChild(linkText);
+      a.title = "View";
+      a.href = "/Marathon/marathon/emergencyreport/edit/"+ data[i].id;
+      infowincontent.appendChild(a);
+
+      bindInfoWindow(marker,map,infowindow,infowincontent);
     }
     data = JSON.parse('<?php echo json_encode(Problemreport::find(null)) ?>');
 
@@ -53,9 +70,27 @@ foreach ($page->items as $emergencyreport){ ?>
       var position = new google.maps.LatLng(data[i].lag,data[i].lng);
       var marker = new google.maps.Marker({
         position: position,
-        map: map
+        map: map,
+        label: "P"
       });
-      bindInfoWindow(marker,map,infowindow,data[i].header);
+      var infowincontent = document.createElement('div');
+      var strong = document.createElement('strong');
+      strong.textContent = data[i].header;
+      infowincontent.appendChild(strong);
+      infowincontent.appendChild(document.createElement('br'));
+      var text = document.createElement('text');
+      text.textContent = data[i].detail;
+      infowincontent.appendChild(text);
+
+      infowincontent.appendChild(document.createElement('br'));
+      var a = document.createElement('a');
+      var linkText = document.createTextNode("View");
+      a.appendChild(linkText);
+      a.title = "View";
+      a.href = "/Marathon/marathon/problemreport/edit/"+ data[i].id;
+      infowincontent.appendChild(a);
+
+      bindInfoWindow(marker,map,infowindow,infowincontent);
     }
    }
   function bindInfoWindow(marker, map, infowindow, html) {
