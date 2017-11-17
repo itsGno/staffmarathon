@@ -36,29 +36,39 @@ foreach ($page->items as $emergencyreport){ ?>
 
     var data = JSON.parse('<?php echo json_encode($page->items) ?>');
     for(var i=0;i<data.length;i++){
-      var infoWindow = new google.maps.InfoWindow;
+      var infowindow = new google.maps.InfoWindow;
       var position = new google.maps.LatLng(data[i].lag,data[i].lng);
       var marker = new google.maps.Marker({
         position: position,
         map: map
       });
-      marker.addListener('click', function() {
-                infoWindow.open(map, marker);
-              });
+      var infowincontent = document.createElement('div');
+      var text = document.createElement('text');
+      infowincontent.appendChild(text);
+      text.textContent = data[i].header;
+      google.maps.event.addListener(marker, 'click', function () {
+          infowindow.setContent(infowincontent);
+          infowindow.open(map, this);
+          });
         console.log(data[i].lag +" "+ data[i].lng);
     }
     data = JSON.parse('<?php echo json_encode(Problemreport::find(null)) ?>');
 
     for(var i=0;i<data.length;i++){
-      var infoWindow = new google.maps.InfoWindow;
+      var infowindow = new google.maps.InfoWindow;
       var position = new google.maps.LatLng(data[i].lag,data[i].lng);
       var marker = new google.maps.Marker({
         position: position,
         map: map
       });
-      marker.addListener('click', function() {
-                infoWindow.open(map, marker);
-              });
+      var infowincontent = document.createElement('div');
+      var text = document.createElement('text');
+      text.textContent = data[i].header;
+      infowincontent.appendChild(text);
+      google.maps.event.addListener(marker, 'click', function () {
+          infowindow.setContent(infowincontent);
+          infowindow.open(map, this);
+          });
         console.log(data[i].lag +" "+ data[i].lng);
     }
    }
