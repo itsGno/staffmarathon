@@ -45,14 +45,14 @@
     margin-top: 30px;
     margin-left: 18px;
 }
-.add{
-  margin-left: 10px;
-}
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     margin: auto;
     text-align: center;
+    background-image: url("http://www.mx7.com/i/2b9/BJSA8D.png");
+    background-size: cover;
+
 }
 
 .title {
@@ -74,20 +74,40 @@
   width: 50%;
 
 }
+.cover{
+  position: relative;
+  width: 100% ;
+  height: 200px;
+
+}
 .name{
   border: none;
   outline: 0;
   display: inline-block;
   padding: 8px;
+  padding-top: 15%;
   color: white;
-  background-color: black;
   text-align: center;
   cursor: pointer;
   width: 100%;
-  font-size: 18px;
+  font-size: 25px;
+}
+.ssid{
+  border: none;
+  outline: 0;
+  display: inline-block;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
 }
 .photo{
-  height: 300px;
+  position: absolute;
+  height: 100%;
+  width: 60%;
+  border: 10px solid #ffffff;
+  bottom: -23%;
 }
 
 button:hover, a:hover {
@@ -97,7 +117,15 @@ button:hover, a:hover {
   color: black !important;
   border-color: black !important;
 }
+p{
+  font-size: 18px;
+  color: black;
+   font-weight: 700;
+}
+
+
 </style>
+
 
 
 <div class="page-header">
@@ -156,24 +184,38 @@ button:hover, a:hover {
          <td data-toggle="modal" data-target="#myModal<?php echo $sendername->id ?>"  ><?php echo $sendername->fname." ".$sendername->lname ?></a></td>
 
          <div class="container">
-           <!-- Trigger the modal with a button -->
-           <!-- Modal -->
-           <div class="modal fade" id="myModal<?php echo $sendername->id ?>" role="dialog">
-             <div class="modal-dialog">
-               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-           <div class="card">
-           <img src="../public/images/<?php echo $sendername->images ?>"  style="height:270px;">
-             <h5 class="name"> <?php echo $sendername->fname." ".$sendername->lname ?></h5>
-             <p class="title"> Category : <?php echo $sendername->category ?></p>
-           </div>
-             </div>
-           </div>
+         <!-- Trigger the modal with a button -->
+         <!-- Modal -->
+         <div class="modal fade" id="myModal<?php echo $sendername->id ?>" role="dialog">
+         <div class="modal-dialog">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <div class="card">
+         <div class="cover">
+           <p class="ssid w3-padding w3-display-topmiddle">STAFF</p>
+           <img  class="rounded-circle photo w3-display-bottommiddle" src="../public/images/<?php echo $sendername->images ?>">
+         </div>
+         <p class="name"><?php echo $sendername->fname." ".$sendername->lname ?></p>
+
+       <p >Category : <?php echo $sendername->category ?></p>
+         </div>
+         </div>
+         </div>
          </div>
 
        <td><?php echo $problemreport->category ?></td>
 
          <td><?php echo $problemreport->level ?></td>
-       <td><?php echo $problemreport->status ?></td>
+         <td><?php
+         if($problemreport->status == 0){
+           ?>
+            Unfinished
+           <?php
+         }else{
+           ?>
+            Finished
+           <?php
+         }
+         ?></td>
 
 
              <td><a href="/Marathon/marathon/problemreport/edit/<?php echo $problemreport->id ?>">View</td>
