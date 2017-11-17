@@ -148,12 +148,25 @@
   <br>
   <span>Staff : <?php echo $staff->fname." ".$staff->lname; ?></span>
     <p>Level : <?php echo $this->tag->getValue("level"); ?></p>
+
+    <?php
+
+    $status = $this->tag->getValue("status");
+    if($status == 0){
+       echo $this->tag->hiddenField(["id", "type" => "number", "class" => "form-control ", "id" => "fieldId","value" => "$id"]) ?>
+      <?php echo $this->tag->hiddenField(["status", "type" => "number", "class" => "form-control ", "id" => "fieldStatus","value" => "1"]) ?>
+
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Done</button>
+      <?php
+    }
+     ?>
+    <?php echo $this->tag->endForm(); ?>
 </div>
 </div>
 
 <?php
       $id = $this->tag->getValue("id");
-     
+
     echo $this->tag->form(
         [
             "emergencyreport/done/$id",
@@ -164,13 +177,6 @@
     );
 ?>
 
-
-         <?php echo $this->tag->hiddenField(["id", "type" => "number", "class" => "form-control ", "id" => "fieldId","value" => "$id"]) ?>
-         <?php echo $this->tag->hiddenField(["status", "type" => "number", "class" => "form-control ", "id" => "fieldStatus","value" => "1"]) ?>
-
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Done</button>
-
-<?php echo $this->tag->endForm(); ?>
 
 
 <script>
