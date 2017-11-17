@@ -4,14 +4,7 @@
 <?php echo $this->getContent(); ?>
 
 <div id="map"></div>
-<div id="message"></div>
 
-<?php 
-foreach ($page->items as $emergencyreport){ ?>
-         <tr class="w3-hover-red">
-         <td><?php echo $emergencyreport->id ?></td>
-         <td><?php echo $emergencyreport->header ?></td>
-<?php } ?>
 
 
      
@@ -36,6 +29,7 @@ foreach ($page->items as $emergencyreport){ ?>
 
     var data = JSON.parse('<?php echo json_encode($page->items) ?>');
     for(var i=0;i<data.length;i++){
+      if(data[i].status==0){
       console.log(data[i].header);
       var infowindow = new google.maps.InfoWindow;
       var position = new google.maps.LatLng(data[i].lag,data[i].lng);
@@ -45,7 +39,7 @@ foreach ($page->items as $emergencyreport){ ?>
         label: 'E'
       });
       var infowincontent = document.createElement('div');
-      var strong = document.createElement('strong');
+      var strong = document.createElement('h5');
       strong.textContent = data[i].header;
       infowincontent.appendChild(strong);
       infowincontent.appendChild(document.createElement('br'));
@@ -54,17 +48,19 @@ foreach ($page->items as $emergencyreport){ ?>
       infowincontent.appendChild(text);
       infowincontent.appendChild(document.createElement('br'));
       var a = document.createElement('a');
-      var linkText = document.createTextNode("View");
+      var linkText = document.createTextNode("More detail..");
       a.appendChild(linkText);
       a.title = "View";
       a.href = "/Marathon/marathon/emergencyreport/edit/"+ data[i].id;
       infowincontent.appendChild(a);
 
       bindInfoWindow(marker,map,infowindow,infowincontent);
+      }
     }
     data = JSON.parse('<?php echo json_encode(Problemreport::find(null)) ?>');
 
     for(var i=0;i<data.length;i++){
+      if(data[i].status==0){      
       console.log(data[i].header);
       var infowindow = new google.maps.InfoWindow;
       var position = new google.maps.LatLng(data[i].lag,data[i].lng);
@@ -74,7 +70,7 @@ foreach ($page->items as $emergencyreport){ ?>
         label: "P"
       });
       var infowincontent = document.createElement('div');
-      var strong = document.createElement('strong');
+      var strong = document.createElement('h5');
       strong.textContent = data[i].header;
       infowincontent.appendChild(strong);
       infowincontent.appendChild(document.createElement('br'));
@@ -84,13 +80,14 @@ foreach ($page->items as $emergencyreport){ ?>
 
       infowincontent.appendChild(document.createElement('br'));
       var a = document.createElement('a');
-      var linkText = document.createTextNode("View");
+      var linkText = document.createTextNode("More detail..");
       a.appendChild(linkText);
       a.title = "View";
       a.href = "/Marathon/marathon/problemreport/edit/"+ data[i].id;
       infowincontent.appendChild(a);
 
       bindInfoWindow(marker,map,infowindow,infowincontent);
+    }
     }
    }
   function bindInfoWindow(marker, map, infowindow, html) {
