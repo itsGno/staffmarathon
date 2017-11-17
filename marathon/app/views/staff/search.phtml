@@ -126,7 +126,9 @@ p{
 </style>
 
 
-
+<div class="col-md-12 text-center" style="color:black;  border-bottom-style: solid; border-width: 1px; border-bottom-color:black;">
+  <h1>List of Staff</h1>
+</div>
 <div class="page-header">
 <div class="search">
 <form class=" form-inline my-2 my-lg-0" action ="../staff/search" method="POST">
@@ -164,7 +166,7 @@ p{
      <tbody>
      <?php if(isSet($page)){
      foreach ($page->items as $staff): ?>
-         <tr class="w3-hover-red">
+         <tr class="w3-hover-">
              <td><?php echo $staff->id ?></td>
          <td><?php echo $staff->fname ?></td>
          <td><?php echo $staff->lname ?></td>
@@ -191,6 +193,8 @@ p{
            </div>
            </div>
            </div>
+
+
          </tr>
 
 

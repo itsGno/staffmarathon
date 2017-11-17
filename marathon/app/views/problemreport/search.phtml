@@ -40,6 +40,7 @@
 .container {
     margin-top: 10px;
     text-align: center;
+
 }
 .search {
     margin-top: 30px;
@@ -53,6 +54,9 @@
     background-image: url("http://www.mx7.com/i/2b9/BJSA8D.png");
     background-size: cover;
 
+}
+.add{
+ margin-left: 10px;
 }
 
 .title {
@@ -125,9 +129,10 @@ p{
 
 
 </style>
-
-
-
+<br>
+<div class="col-md-12 text-center" style="color:black;  border-bottom-style: solid; border-width: 1px; border-bottom-color:black;">
+  <h1>List of Problem</h1>
+</div>
 <div class="page-header">
 <div class="search">
 <form class=" form-inline my-2 my-lg-0" action ="../problemreport/search" method="POST">
@@ -146,8 +151,8 @@ p{
     <option value="checkpoint">Check point</option>
       <option value="toilet">Toilet</option>
   </select>
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  <a href="/Marathon/marathon/problemreport/new/" style="color:#28a745;"><div class="add btn btn-outline-success my-2 my-sm-0" >Add</div></a>
+  <button class="form-control btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  <a href="/Marathon/marathon/problemreport/new/" style="color:#28a745;"><div class="form-control add btn btn-outline-success my-2 my-sm-0" >Add</div></a>
 </form>
 </div>
 </div>
@@ -174,14 +179,14 @@ p{
 
      <?php if(isSet($page)){
      foreach ($page->items as $problemreport): ?>
-         <tr class="w3-hover-red">
+         <tr class="w3-hover-">
          <td><?php echo $problemreport->id ?></td>
          <td><?php echo $problemreport->header ?></td>
 
 
           <!--กล่อง pop up sendername -->
          <?php $sendername = Staff::findFirstByid($problemreport->senderId);?>
-         <td data-toggle="modal" data-target="#myModal<?php echo $sendername->id ?>"  ><?php echo $sendername->fname." ".$sendername->lname ?></a></td>
+         <td data-toggle="modal" data-target="#myModal<?php echo $sendername->id ?>"  ><a style="color: #0056b3"><?php echo $sendername->fname." ".$sendername->lname ?></a></td>
 
          <div class="container">
          <!-- Trigger the modal with a button -->
@@ -208,11 +213,12 @@ p{
          <td><?php
          if($problemreport->status == 0){
            ?>
-            Unfinished
+           <label style="color:red;">   Unfinished </label>
+
            <?php
          }else{
            ?>
-            Finished
+             <label style="color:#53B12F;">   Finished </label>
            <?php
          }
          ?></td>

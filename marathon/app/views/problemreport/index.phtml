@@ -40,6 +40,7 @@
 .container {
     margin-top: 10px;
     text-align: center;
+
 }
 .search {
     margin-top: 30px;
@@ -128,9 +129,10 @@ p{
 
 
 </style>
-
-
-
+<br>
+<div class="col-md-12 text-center" style="color:black;  border-bottom-style: solid; border-width: 1px; border-bottom-color:black;">
+  <h1>List of Problem</h1>
+</div>
 <div class="page-header">
 <div class="search">
 <form class=" form-inline my-2 my-lg-0" action ="../problemreport/search" method="POST">
@@ -177,14 +179,14 @@ p{
 
      <?php if(isSet($page)){
      foreach ($page->items as $problemreport): ?>
-         <tr class="w3-hover-red">
+         <tr class="w3-hover-">
          <td><?php echo $problemreport->id ?></td>
          <td><?php echo $problemreport->header ?></td>
 
 
           <!--กล่อง pop up sendername -->
          <?php $sendername = Staff::findFirstByid($problemreport->senderId);?>
-         <td data-toggle="modal" data-target="#myModal<?php echo $sendername->id ?>"  ><?php echo $sendername->fname." ".$sendername->lname ?></a></td>
+       <td data-toggle="modal" data-target="#myModal<?php echo $sendername->id ?>"  ><a style="color: #0056b3"><?php echo $sendername->fname." ".$sendername->lname ?></a></td>
 
          <div class="container">
          <!-- Trigger the modal with a button -->
@@ -211,11 +213,12 @@ p{
          <td><?php
          if($problemreport->status == 0){
            ?>
-            Unfinished
+           <label style="color:red;">   Unfinished </label>
+
            <?php
          }else{
            ?>
-            Finished
+             <label style="color:#53B12F;">   Finished </label>
            <?php
          }
          ?></td>

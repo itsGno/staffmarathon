@@ -122,10 +122,14 @@ p{
   color: black;
    font-weight: 700;
 }
-
+.add{
+ margin-left: 10px;
+}
 
 </style>
-
+<div class="col-md-12 text-center" style="color:black;  border-bottom-style: solid; border-width: 1px; border-bottom-color:black;">
+  <h1>List of Emergemcy</h1>
+</div>
 <div class="page-header">
 <div class="search">
 <form class=" form-inline my-2 my-lg-0" action ="../emergencyreport/search" method="POST">
@@ -137,7 +141,7 @@ p{
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 <a href="/Marathon/marathon/emergencyreport/new/" style="color:#28a745;"> <div class="add btn btn-outline-success my-2 my-sm-0" >Add</div></a>
 
 </form>
@@ -155,7 +159,7 @@ p{
 
   <table class="w3-table-all">
      <thead>
-       <tr style="background-color: black; color:white;">
+       <tr style="background-color: black; color:white; ">
      <th>Id</th>
      <th>Title</th>
      <th>Runner Name</th>
@@ -168,12 +172,12 @@ p{
 
      <tbody>
      <?php foreach ($page->items as $emergencyreport): ?>
-         <tr class="w3-hover-red">
+         <tr class="w3-hover-">
          <td><?php echo $emergencyreport->id ?></td>
          <td><?php echo $emergencyreport->header ?></td>
 
           <?php $runnername = Runner::findFirstByid($emergencyreport->runnerId);?>
-         <td data-toggle="modal" data-target="#myModal<?php echo $runnername->id ?>"  ><?php echo $runnername->fname." ".$runnername->lname ?></a></td>
+         <td data-toggle="modal" data-target="#myModal<?php echo $runnername->id ?>"  ><a style="color: #0056b3"><?php echo $runnername->fname." ".$runnername->lname ?></a></td>
 
          <div class="container">
          <!-- Trigger the modal with a button -->
@@ -201,7 +205,7 @@ p{
          <!--กล่อง pop up staffname -->
            <?php
            $staffname = Staff::findFirstByid($emergencyreport->staffId);?>
-           <td data-toggle="modal" data-target="#myModal1<?php echo $staffname->id ?>"  ><?php echo $staffname->fname." ".$staffname->lname  ?></td>
+           <td data-toggle="modal" data-target="#myModal1<?php echo $staffname->id ?>"  ><a style="color: #0056b3"><?php echo $staffname->fname." ".$staffname->lname  ?></td>
 
            <div class="container">
            <!-- Trigger the modal with a button -->
@@ -227,11 +231,12 @@ p{
          <td><?php
          if($emergencyreport->status == 0){
            ?>
-            Unfinished
+           <label style="color:red;">   Unfinished </label>
+
            <?php
          }else{
            ?>
-            Finished
+             <label style="color:#53B12F;">   Finished </label>
            <?php
          }
          ?></td>
