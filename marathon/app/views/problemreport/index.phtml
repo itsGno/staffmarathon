@@ -1,5 +1,6 @@
 
 <!doctype html>
+
 <html lang="en">
 
 <head>
@@ -126,9 +127,39 @@ p{
   color: black;
    font-weight: 700;
 }
+.star-rating {   /* เพิ่ม*/
+  font-size:17px;
+
+}
 
 
 </style>
+
+<script> //Rating
+var $star_rating = $('.star-rating .fa');
+
+var SetRatingStar = function() {
+  return $star_rating.each(function() {
+    if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+      return $(this).removeClass('fa-star-o').addClass('fa-star');
+    } else {
+      return $(this).removeClass('fa-star').addClass('fa-star-o');
+    }
+  });
+};
+
+$star_rating.on('click', function() {
+  $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+  return SetRatingStar();
+});
+
+SetRatingStar();
+$(document).ready(function() {
+
+});
+</script>
+
+
 <br>
 <div class="col-md-12 text-center" style="color:black;  border-bottom-style: solid; border-width: 1px; border-bottom-color:black;">
   <h1>List of Problem</h1>
@@ -209,16 +240,38 @@ p{
 
        <td><?php echo $problemreport->category ?></td>
 
-         <td><?php echo $problemreport->level ?></td>
+       <td>
+
+         <?php
+         if($problemreport->level == 1){
+           ?>
+           <label class="star-rating" style="color:#ffbf00;">  <i class="fa fa-star"></i></label>
+           <?php
+         }else if($problemreport->level == 2){
+           ?>
+     <label class="star-rating" style="color:#ff8000;">  <i class="fa fa-star"></i><i class="fa fa-star"></i></label>
+
+
+           <?php
+         }
+         else{
+           ?>
+   <label class="star-rating" style="color:red;">  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></label>
+           <?php
+         }
+
+   ?>
+
+       </td>
          <td><?php
          if($problemreport->status == 0){
            ?>
-           <label style="color:red;">   Unfinished </label>
+           <label style="color:red;">  <i class="fa fa-times fa-lg"></i> </label>
 
            <?php
          }else{
            ?>
-             <label style="color:#53B12F;">   Finished </label>
+             <label style="color:#53B12F;">   <i class="fa fa-check fa-lg"></i>  </label>
            <?php
          }
          ?></td>

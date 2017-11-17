@@ -125,6 +125,9 @@ p{
 .add{
  margin-left: 10px;
 }
+.star-rating {   /* เพิ่ม*/
+  font-size:17px;
+}
 
 </style>
 <div class="col-md-12 text-center" style="color:black;  border-bottom-style: solid; border-width: 1px; border-bottom-color:black;">
@@ -226,17 +229,39 @@ p{
            </div>
            </div>
 
+           <td>
 
-         <td><?php echo $emergencyreport->level ?></td>
+             <?php
+             if($emergencyreport->level == 1){
+               ?>
+               <label class="star-rating" style="color:#ffbf00;">  <i class="fa fa-star"></i></label>
+               <?php
+             }else if($emergencyreport->level == 2){
+               ?>
+         <label class="star-rating" style="color:#ff8000;">  <i class="fa fa-star"></i><i class="fa fa-star"></i></label>
+
+
+               <?php
+             }
+             else{
+               ?>
+       <label class="star-rating" style="color:red;">  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></label>
+               <?php
+             }
+
+       ?>
+
+           </td>
+
          <td><?php
          if($emergencyreport->status == 0){
            ?>
-           <label style="color:red;">   Unfinished </label>
+           <label style="color:red;">   <i class="fa fa-times fa-lg"></i> </label>
 
            <?php
          }else{
            ?>
-             <label style="color:#53B12F;">   Finished </label>
+             <label style="color:#53B12F;">   <i class="fa fa-check fa-lg"></i> </label>
            <?php
          }
          ?></td>
