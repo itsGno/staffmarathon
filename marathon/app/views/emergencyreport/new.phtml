@@ -3,6 +3,12 @@
  * @var \Phalcon\Mvc\View\Engine\Php $this
  */
 ?>
+<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+<style>
+body{
+  font-family: 'Kanit', sans-serif;
+}
+</style>
 <?php echo $this->getContent(); ?>
 
 <?php
@@ -18,26 +24,26 @@
         <div id="map" style="margin-left: 0%; box-shadow: 0px 0px 4px 0px;" class="col-md-8"></div>
     <div class="col-md-4">
         <label for="fieldHeader" class="col-sm-4 control-label" >Title</label>
-       
+
             <?php echo $this->tag->textArea(["header", "cols" => 30, "rows" => 4, "class" => "form-control ", "id" => "fieldHeader"]) ?>
-      
- 
+
+
         <label for="fieldDetail" class="col-sm-4 control-label" >Detail</label>
-     
+
             <?php echo $this->tag->textArea(["detail", "cols" => 30, "rows" => 4, "class" => "form-control ", "id" => "fieldDetail"]) ?>
-   
+
         <label for="fieldRunnerid" class="col-sm-5 control-label" >Runner ID</label>
-    
+
             <?php echo $this->tag->textField(["runnerId", "type" => "number", "class" => "form-control ", "id" => "fieldRunnerid"]) ?>
-    
+
                 <?php $id = $this->session->get('id'); ?>
             <?php echo $this->tag->hiddenField(["staffId", "type" => "number", "class" => "form-control ", "id" => "fieldStaffid","value" => "$id"]) ?>
-    
+
             <?php echo $this->tag->hiddenField(["lag", "size" => 30, "class" => "form-control", "id" => "fieldLag"]) ?>
-     
+
             <?php echo $this->tag->hiddenField(["lng", "size" => 30, "class" => "form-control", "id" => "fieldLng"]) ?>
-     
- 
+
+
         <div class="col-md-5">
         <div class="radio">
         <label><input type="radio" name="level" value="1">level 1</label>
@@ -50,8 +56,8 @@
       </div>
       </div>
             <?php echo $this->tag->submitButton(["Save", "class" => "form-control btn btn-default w3-btn w3-white w3-border-red w3-round-large ", ]) ?>
- 
- 
+
+
       </div>
 
 </div>
