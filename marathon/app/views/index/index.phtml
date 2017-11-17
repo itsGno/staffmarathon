@@ -36,43 +36,37 @@ foreach ($page->items as $emergencyreport){ ?>
 
     var data = JSON.parse('<?php echo json_encode($page->items) ?>');
     for(var i=0;i<data.length;i++){
+      console.log(data[i].header);
       var infowindow = new google.maps.InfoWindow;
       var position = new google.maps.LatLng(data[i].lag,data[i].lng);
       var marker = new google.maps.Marker({
         position: position,
         map: map
       });
-      var infowincontent = document.createElement('div');
-      var text = document.createElement('text');
-      infowincontent.appendChild(text);
-      text.textContent = data[i].header;
-      google.maps.event.addListener(marker, 'click', function () {
-          infowindow.setContent(infowincontent);
-          infowindow.open(map, this);
-          });
-        console.log(data[i].lag +" "+ data[i].lng);
+      bindInfoWindow(marker,map,infowindow,data[i].header);
     }
     data = JSON.parse('<?php echo json_encode(Problemreport::find(null)) ?>');
 
     for(var i=0;i<data.length;i++){
+      console.log(data[i].header);
       var infowindow = new google.maps.InfoWindow;
       var position = new google.maps.LatLng(data[i].lag,data[i].lng);
       var marker = new google.maps.Marker({
         position: position,
         map: map
       });
-      var infowincontent = document.createElement('div');
-      var text = document.createElement('text');
-      text.textContent = data[i].header;
-      infowincontent.appendChild(text);
-      google.maps.event.addListener(marker, 'click', function () {
-          infowindow.setContent(infowincontent);
-          infowindow.open(map, this);
-          });
-        console.log(data[i].lag +" "+ data[i].lng);
+      bindInfoWindow(marker,map,infowindow,data[i].header);
     }
    }
+  function bindInfoWindow(marker, map, infowindow, html) {
+    marker.addListener('click', function() {
+        infowindow.setContent(html);
+        infowindow.open(map, marker);
+    });
+  } 
+
   
+
    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         var waypts = [];
         var checkboxArray = [ new google.maps.LatLng(18.808265, 98.954752),
