@@ -135,7 +135,16 @@ p{
 </div>
 <div class="page-header">
 <div class="search">
-<form class=" form-inline my-2 my-lg-0" action ="../emergencyreport/search" method="POST">
+<?php 
+          echo $this->tag->form(
+                        [
+                            "emergencyreport/search/",
+                            "autocomplete" => "off",
+                            "class" => "form-inline my-2 my-lg-0"
+                
+                        ]
+                    ); 
+      ?>
 <input class="form-control mr-sm-2" type="search" placeholder="Title" aria-label="Search"name="header">
 
 <select class="form-control mr-sm-2" name="level" id="">
@@ -146,8 +155,9 @@ p{
 </select>
 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 <a href="/Marathon/marathon/emergencyreport/new/" style="color:#28a745;"> <div class="add btn btn-outline-success my-2 my-sm-0" >Add</div></a>
+<?php echo $this->tag->endForm(); ?>
 
-</form>
+
 
 
 
