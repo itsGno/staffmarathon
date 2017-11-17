@@ -17,9 +17,7 @@ foreach ($page->items as $emergencyreport){ ?>
      
 <script type="text/javascript">
     var map;
-    var marker;
     var messagewindow;
-    
    function initMap() {
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -38,17 +36,33 @@ foreach ($page->items as $emergencyreport){ ?>
 
     var data = JSON.parse('<?php echo json_encode($page->items) ?>');
     for(var i=0;i<data.length;i++){
-        var position = new google.maps.LatLng(data[i].lag,data[i].lng);
-        marker = new google.maps.Marker({
-          position: position,
-          map: map,
-        });
+      var infoWindow = new google.maps.InfoWindow;
+      var position = new google.maps.LatLng(data[i].lag,data[i].lng);
+      var marker = new google.maps.Marker({
+        position: position,
+        map: map
+      });
+      marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+              });
         console.log(data[i].lag +" "+ data[i].lng);
     }
-    marker.setMap(map);
+    data = JSON.parse('<?php echo json_encode(Problemreport::find(null)) ?>');
 
+    for(var i=0;i<data.length;i++){
+      var infoWindow = new google.maps.InfoWindow;
+      var position = new google.maps.LatLng(data[i].lag,data[i].lng);
+      var marker = new google.maps.Marker({
+        position: position,
+        map: map
+      });
+      marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+              });
+        console.log(data[i].lag +" "+ data[i].lng);
+    }
    }
-
+  
    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         var waypts = [];
         var checkboxArray = [ new google.maps.LatLng(18.808265, 98.954752),
