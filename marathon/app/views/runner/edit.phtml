@@ -82,3 +82,10 @@
 </div>
 
 <?php echo $this->tag->endForm(); ?>
+
+<?php foreach ($page->items as $runninginfo): ?>
+<br>
+<?php echo "time : ".$runninginfo->time; ?>
+<?php echo "checkpoint id : ".$runninginfo->checkpointid; ?>
+
+<?php endforeach; ?>

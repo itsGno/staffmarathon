@@ -2,6 +2,7 @@
  
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
+use Phalcon\Mvc\Model\Query;
 
 
 class RunnerController extends ControllerBase
@@ -116,7 +117,20 @@ class RunnerController extends ControllerBase
             $this->tag->setDefault("tel", $runner->tel);
             $this->tag->setDefault("username", $runner->username);
             $this->tag->setDefault("password", $runner->password);
-            
+
+            $query = $this->modelsManager->createQuery("SELECT c.* FROM runninginfo as c WHERE (c.runnerid = :id:)");
+            $runninginfo  = $query->execute(
+                [
+                    'id'  => $runner->id
+                ]
+            );
+            $paginator = new Paginator([
+                'data' => $runninginfo,
+                'limit'=> 100,
+                'page' => 1
+            ]);
+    
+            $this->view->page = $paginator->getPaginate();
         }
     }
 
@@ -266,4 +280,5 @@ class RunnerController extends ControllerBase
         ]);
     }
 
+  
 }

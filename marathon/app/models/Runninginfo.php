@@ -1,8 +1,8 @@
 <?php
 
-class Runner extends \Phalcon\Mvc\Model
+class Runninginfo extends \Phalcon\Mvc\Model
 {
-  
+
     /**
      *
      * @var integer
@@ -14,54 +14,24 @@ class Runner extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var string
-     * @Column(type="string", nullable=false)
+     * @var integer
+     * @Column(type="integer", length=11, nullable=false)
      */
-    public $fname;
+    public $runnerid;
+
+    /**
+     *
+     * @var integer
+     * @Column(type="integer", length=11, nullable=false)
+     */
+    public $checkpointid;
 
     /**
      *
      * @var string
      * @Column(type="string", nullable=false)
      */
-    public $lname;
-
-
-     /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $type;
-    
-    
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $sSID;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $tel;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $username;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $password;
+    public $time;
 
     /**
      * Initialize method for model.
@@ -69,7 +39,7 @@ class Runner extends \Phalcon\Mvc\Model
     public function initialize()
     {
         $this->setSchema("marathon");
-        $this->setSource("runner");
+        $this->setSource("runninginfo");
     }
 
     /**
@@ -79,14 +49,14 @@ class Runner extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'runner';
+        return 'runninginfo';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Runner[]|Runner|\Phalcon\Mvc\Model\ResultSetInterface
+     * @return Runninginfo[]|Runninginfo|\Phalcon\Mvc\Model\ResultSetInterface
      */
     public static function find($parameters = null)
     {
@@ -97,11 +67,11 @@ class Runner extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Runner|\Phalcon\Mvc\Model\ResultInterface
+     * @return Runninginfo|\Phalcon\Mvc\Model\ResultInterface
      */
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
     }
-  
+
 }
