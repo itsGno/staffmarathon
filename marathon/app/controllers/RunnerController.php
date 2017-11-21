@@ -116,7 +116,7 @@ class RunnerController extends ControllerBase
             $this->tag->setDefault("username", $runner->username);
             $this->tag->setDefault("password", $runner->password);
 
-            $query = $this->modelsManager->createQuery("SELECT c.* FROM runninginfo as c WHERE (c.runnerid = :id:)");
+            $query = $this->modelsManager->createQuery("SELECT c.* FROM runninginfo as c WHERE (c.runnerid = :id:) ORDER BY c.time");
             $runninginfo  = $query->execute(
                 [
                     'id'  => $runner->id
