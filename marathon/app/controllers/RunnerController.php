@@ -122,6 +122,7 @@ class RunnerController extends ControllerBase
                     'id'  => $runner->id
                 ]
             );
+  
             $paginator = new Paginator([
                 'data' => $runninginfo,
                 'limit'=> 100,
