@@ -12,6 +12,8 @@ class RunnerController extends ControllerBase
      */
     public function indexAction()
     {
+        $this->persistent->parameters = null;
+        
         $numberPage = 1;
         if ($this->request->isPost()) {
             
@@ -27,11 +29,7 @@ class RunnerController extends ControllerBase
             $parameters = [];
         }
         $parameters["order"] = "id";
-        $parameters =null;
         $runner = Runner::find($parameters);
-        
-   
-
         $paginator = new Paginator([
             'data' => $runner,
             'limit'=> 10,

@@ -11,6 +11,7 @@ class ProblemreportController extends ControllerBase
      */
     public function indexAction()
     {
+        $this->persistent->parameters = null;        
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'Problemreport', $_POST);
@@ -24,7 +25,7 @@ class ProblemreportController extends ControllerBase
             $parameters = [];
         }
         $parameters["order"] = "id";
-            $parameters = null;
+     
             $problemreport = Problemreport::find($parameters);
         $paginator = new Paginator([
             'data' => $problemreport,

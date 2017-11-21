@@ -12,6 +12,7 @@ class EmergencyreportController extends ControllerBase
      */
     public function indexAction()
     {
+        $this->persistent->parameters = null;        
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'Emergencyreport', $_POST);
@@ -25,8 +26,18 @@ class EmergencyreportController extends ControllerBase
             $parameters = [];
         }
         $parameters["order"] = "id";
-        $parameters = null;
+ 
         $emergencyreport = Emergencyreport::find($parameters);
+        if (count($emergencyreport) == 0) {
+            $this->flash->notice("The search did not find any emergencyreport");
+
+            $this->dispatcher->forward([
+                "controller" => "emergencyreport",
+                "action" => "index"
+            ]);
+
+            return;
+        }
 
         $paginator = new Paginator([
             'data' => $emergencyreport,
@@ -35,7 +46,7 @@ class EmergencyreportController extends ControllerBase
         ]);
 
         $this->view->page = $paginator->getPaginate();
-    }
+         }
 
     /**
      * Searches for emergencyreport

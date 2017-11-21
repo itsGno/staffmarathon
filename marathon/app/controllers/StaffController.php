@@ -11,6 +11,7 @@ class StaffController extends ControllerBase
      */
     public function indexAction()
     {
+        $this->persistent->parameters = null;        
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'Staff', $_POST);
@@ -24,7 +25,6 @@ class StaffController extends ControllerBase
             $parameters = [];
         }
         $parameters["order"] = "id";
-        $parameters=null;
        
         $staff = Staff::find($parameters);
 
